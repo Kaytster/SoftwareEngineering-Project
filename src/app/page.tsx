@@ -1,103 +1,83 @@
-import Image from "next/image";
+import './globals.css'
+import Image from 'next/image';
+import homeIcon from './components/icons/home.png';
+import signupIcon from './components/icons/add-user.png';
+import loginIcon from './components/icons/avatar.png';
 
+
+// <a href="https://www.flaticon.com/free-icons/home-button" title="home button icons">Home button icons created by Freepik - Flaticon</a>
+// <a href="https://www.flaticon.com/free-icons/add-user" title="add user icons">Add user icons created by Freepik - Flaticon</a>
+// <a href="https://www.flaticon.com/free-icons/profile" title="profile icons">Profile icons created by Freepik - Flaticon</a>
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
+  <main>
+    {/* NAV BAR */}
+    <header> 
+        <ul className="flex justify-around bg-[#9CB7C8]">
+          <li className="mr-3">
+            <a className="inline-block rounded-full py-2 px-4 bg-[#729458] hover:bg-[#3E592A] text-[#0C0C0C] flex items-center" href="#">
+              <Image 
+                  src={homeIcon} 
+                  alt="Home" 
+                  width={20} 
+                  height={20} 
+                  className="mr-1 inline-block" 
+              />
+              Home
+              </a>
           </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
+          <li className="mr-3">
+            <a className="inline-block rounded-full text-[#0C0C0C] hover:bg-[#B6D99B] py-2 px-4 flex items-center" href="#">
+              <Image 
+                  src={signupIcon} 
+                  alt="Sign Up" 
+                  width={20} 
+                  height={20} 
+                  className="mr-1 inline-block" 
+              />
+              Sign Up
+            </a>
           </li>
-        </ol>
+          <li className="mr-3">
+            <a className="inline-block rounded-full text-[#0C0C0C] hover:bg-[#B6D99B] py-2 px-4 flex items-center" href="#">
+              <Image 
+                  src={loginIcon} 
+                  alt="Log In" 
+                  width={20} 
+                  height={20} 
+                  className="mr-1 inline-block" 
+              />
+              Log In
+            </a>
+          </li>
+      </ul>
+    </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      <div className="relative w-300 h-100 mx-auto mt-20">
+          <div className="absolute inset-0 bg-[#C0D6E4] border-2 border-[#608842] rounded-lg translate-x-3 translate-y-3 z-10"> </div>
+
+          <div className="absolute inset-0 p-8 bg-[#E9F1F6] border-2 border-[#729458] rounded-lg shadow-xl z-20">
+            <div className="flex space-x-6 h-full">
+              {/* col1 */}
+              <div className="w-1/2 flex  flex-col justify-center items-center"> 
+                <h1 className="text-4xl font-bold text-center mb-2">Welcome to</h1>
+                <h2 className="text-5xl font-extrabold text-center mb-6">SustainWear</h2>
+              </div>
+              {/* col2 */}
+              <div className="w-1/2 flex  flex-col justify-center items-center">
+                <p className="text-2xl text-center mb-8">Donating has never been easier.</p>
+                
+                <p className="text-center">
+                    <a href="#" className="underline text-[#729458] hover:text-blue-800">Sign Up </a> 
+                    or 
+                    <a href="#" className="underline text-[#729458] hover:text-blue-800"> Log In </a> 
+                    to get started.
+                </p>
+              </div>
+            </div>
+          </div>
     </div>
+
+  </main>
   );
 }
