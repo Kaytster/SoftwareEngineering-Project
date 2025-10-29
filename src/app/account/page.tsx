@@ -28,12 +28,28 @@ export default function Home() {
                 </div>
                 {/* col2 */}
                 <div className="w-1/2 flex  flex-col justify-center items-center">
-                        <div className="relative w-100 h-100 mx-auto mt-1 bg-[#9CB7C8] rounded-md"> 
-                            <p>USERNAME</p>
-                            <p>TYPE</p>
-                            <p>NAME</p>
-                            <p>PICKUP POINT</p>
+                        <div className="relative w-100 h-100 mx-auto mb-1 bg-[#9CB7C8] rounded-md"> 
+                            <p className='ml-10 mt-10'>USERNAME</p>
+                            <div className='flex items-center'>
+                                <p className='ml-10 mt-5'>Type: </p> 
+                                <p className='ml-5 mt-5'>Donor</p>
+                            </div>
+                            <div className='flex items-center'>
+                                <p className='ml-10 mt-5'>Name: </p>
+                                <p className='ml-5 mt-5'>Firstname Lastname</p>
+                            </div>
+                            <div className='flex items-center'>
+                                <p className='ml-10 mt-5'>Email: </p>
+                                <p className='ml-5 mt-5'>email@email.com</p>
+                            </div>
+                            <div className='flex items-center'>
+                                <p className='ml-10 mt-5 mb-10'>Pickup Point: </p>
+                                <p className='ml-5 mt-5 mb-10'>123 New Street</p>
+                            </div>
                         </div>
+                        <button className=" mt-4 bg-[#729458] hover:bg-[#B6D99B] text-[#0C0C0C] font-bold py-2 px-4 rounded-full">
+                            Edit
+                        </button>
                     </div>
                 </div>
             </div>  
