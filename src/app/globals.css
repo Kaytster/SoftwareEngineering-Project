@@ -5,7 +5,6 @@
   --foreground: #171717;
   --color-primary: #729458;
   --color-secondary: #9CB7C8;
-  --color-light-secondary: #DBEBF4;
   --color-paper: #FFF6E3;
 }
 
@@ -33,12 +32,6 @@
 }
 .bg-paper {
   background-color: var(--color-paper);
-}
-.bg-light-secondary {
-  background-color: var(--color-light-secondary);
-}
-.rounded-2\.5xl {
-  border-radius: calc(var(--radius-sm) * 5);
 }
 
 @media (prefers-color-scheme: dark) {

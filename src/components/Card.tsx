@@ -2,22 +2,13 @@ import { ReactNode } from "react";
 
 export default function Card({
   title,
-  className,
-  children,
+  children
 }: {
   title?: string;
-  className?: string;
   children: ReactNode | ReactNode[];
 }) {
-  let containerClasses =
-    "bg-secondary w-100 p-8 rounded-lg flex flex-col gap-3";
-
-  if (className) {
-    containerClasses += " " + className;
-  }
-
   return (
-    <div className={containerClasses}>
+    <div className="bg-secondary w-100 p-8 rounded-lg flex flex-col gap-3">
       {title && (
         <h2 className="text-center rounded-full bg-primary text-2xl p-2">
           {title}
