@@ -1,12 +1,12 @@
 import '../globals.css'
 import Image from 'next/image';
 import sampleImage from '../components/icons/sampleIMG.jpg';
-import DonorNav from "../components/donorNavigation";
+import CharityNav from "../components/donorNavigation";
 export default function EditDonation() {
   return (
     <main>
         <header>
-            <DonorNav />
+            <CharityNav />
         </header>
 
         <div className="relative w-300 h-130 mx-auto mt-20">
