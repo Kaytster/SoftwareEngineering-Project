@@ -1,14 +1,12 @@
-// <a href="https://www.flaticon.com/free-icons/graph" title="graph icons">Graph icons created by Bamicon - Flaticon</a>
-// <a href="https://www.flaticon.com/free-icons/hand" title="hand icons">Hand icons created by Freepik - Flaticon</a>
 // <a href="https://www.flaticon.com/free-icons/home-button" title="home button icons">Home button icons created by Freepik - Flaticon</a>
+// <a href="https://www.flaticon.com/free-icons/add-user" title="add user icons">Add user icons created by Freepik - Flaticon</a>
 // <a href="https://www.flaticon.com/free-icons/profile" title="profile icons">Profile icons created by Freepik - Flaticon</a>
 
 import Image from "next/image"
 import homeIcon from './icons/home.png';
-import donateIcon from './icons/donate.png';
-import statIcon from './icons/graph.png';
-import userIcon from './icons/avatar.png';
-export default function DonorNav() {
+import signupIcon from './icons/add-user.png';
+import loginIcon from './icons/avatar.png';
+export default function CharityNav() {
   return (
         <ul className="flex justify-around bg-[#9CB7C8]">
           <li className="mr-3">
@@ -26,32 +24,32 @@ export default function DonorNav() {
           <li className="mr-3">
             <a className="inline-block rounded-full text-[#0C0C0C] hover:bg-[#B6D99B] py-2 px-4 flex items-center" href="#">
               <Image 
-                  src={donateIcon} 
-                  alt="Donation History" 
+                  src={signupIcon} 
+                  alt="Sign Up" 
                   width={20} 
                   height={20} 
                   className="mr-1 inline-block" 
               />
-              My Donations
+              View Donations
             </a>
           </li>
           <li className="mr-3">
             <a className="inline-block rounded-full text-[#0C0C0C] hover:bg-[#B6D99B] py-2 px-4 flex items-center" href="#">
               <Image 
-                  src={statIcon} 
-                  alt="Statistics" 
+                  src={loginIcon} 
+                  alt="Log In" 
                   width={20} 
                   height={20} 
                   className="mr-1 inline-block" 
               />
-              My Statistics
+              View Inventory
             </a>
           </li>
           <li className="mr-3">
             <a className="inline-block rounded-full text-[#0C0C0C] hover:bg-[#B6D99B] py-2 px-4 flex items-center" href="#">
               <Image 
-                  src={userIcon} 
-                  alt="Account" 
+                  src={loginIcon} 
+                  alt="Log In" 
                   width={20} 
                   height={20} 
                   className="mr-1 inline-block" 
