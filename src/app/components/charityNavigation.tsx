@@ -10,7 +10,7 @@ export default function CharityNav() {
   return (
         <ul className="flex justify-around bg-[#9CB7C8]">
           <li className="mr-3">
-            <a className="inline-block rounded-full py-2 px-4 bg-[#729458] hover:bg-[#3E592A] text-[#0C0C0C] flex items-center" href="#">
+            <a className="inline-block rounded-full py-2 px-4 bg-[#729458] hover:bg-[#3E592A] text-[#0C0C0C] flex items-center cursor-pointer" href="#">
               <Image 
                   src={homeIcon} 
                   alt="Home" 
@@ -22,7 +22,7 @@ export default function CharityNav() {
               </a>
           </li>
           <li className="mr-3">
-            <a className="inline-block rounded-full text-[#0C0C0C] hover:bg-[#B6D99B] py-2 px-4 flex items-center" href="#">
+            <a className="inline-block rounded-full text-[#0C0C0C] hover:bg-[#B6D99B] py-2 px-4 flex items-center cursor-pointer" href="#">
               <Image 
                   src={signupIcon} 
                   alt="Sign Up" 
@@ -34,7 +34,7 @@ export default function CharityNav() {
             </a>
           </li>
           <li className="mr-3">
-            <a className="inline-block rounded-full text-[#0C0C0C] hover:bg-[#B6D99B] py-2 px-4 flex items-center" href="#">
+            <a className="inline-block rounded-full text-[#0C0C0C] hover:bg-[#B6D99B] py-2 px-4 flex items-center cursor-pointer" href="#">
               <Image 
                   src={loginIcon} 
                   alt="Log In" 
@@ -46,7 +46,7 @@ export default function CharityNav() {
             </a>
           </li>
           <li className="mr-3">
-            <a className="inline-block rounded-full text-[#0C0C0C] hover:bg-[#B6D99B] py-2 px-4 flex items-center" href="#">
+            <a className="inline-block rounded-full text-[#0C0C0C] hover:bg-[#B6D99B] py-2 px-4 flex items-center cursor-pointer" href="#">
               <Image 
                   src={loginIcon} 
                   alt="Log In" 

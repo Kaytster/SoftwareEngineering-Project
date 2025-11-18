@@ -2,7 +2,7 @@ import '../globals.css'
 export default function SignUp() {
   return (
     <main className="flex justify-center items-center min-h-screen"> 
-        <button className="absolute top-4 left-4 bg-[#729458] hover:bg-[#B6D99B] text-[#0C0C0C] font-bold py-2 px-4 rounded-full">
+        <button className="absolute top-4 left-4 bg-[#729458] hover:bg-[#B6D99B] text-[#fff] text-2xl font-bold py-2 px-4 rounded-full cursor-pointer">
             Back
         </button>
         <div className="flex flex-col items-center">
@@ -53,7 +53,7 @@ export default function SignUp() {
                     </div>
                 </form>
 
-                <button className=" mt-4 bg-[#729458] hover:bg-[#B6D99B] text-[#0C0C0C] font-bold py-2 px-4 rounded-full">
+                <button className="mt-4 bg-[#729458] hover:bg-[#B6D99B] text-[#0C0C0C] font-bold py-2 px-10 text-l rounded-full cursor-pointer">
                     Submit
                 </button>
             </div>
