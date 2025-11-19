@@ -1,13 +1,13 @@
 import './globals.css'
 import Image from 'next/image';
-//import LandingNav from './components/landingNavigation';
+import LandingNav from './components/landingNavigation';
 
 export default function Home() {
   return (
   <main>
     {/* NAV BAR */}
     <header> 
-        {/* <LandingNav /> */}
+        <LandingNav />
     </header>
 
       <div className="relative w-300 h-100 mx-auto mt-20">
