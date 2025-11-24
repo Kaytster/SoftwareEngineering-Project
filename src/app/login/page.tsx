@@ -11,7 +11,7 @@ export default function Home() {
     </header>
 
       <div className="flex justify-center mx-auto mt-20">
-        <div className="relative mx-auto bg-[#9CB7C8] rounded-md flex flex-col items-center p-8 w-full max-w-2xl">
+        <div className="relative mx-auto bg-[#9CB7C8] rounded-md flex flex-col items-center p-8 w-full max-w-xl">
           <div className='inline-block rounded-md bg-[#729458] text-[#0C0C0C] text-3xl px-3 mb-6'>Log In</div>
 
           <form className="w-full">
