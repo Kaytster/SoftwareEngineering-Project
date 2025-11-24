@@ -4,9 +4,9 @@ import signupIcon from './icons/add-user.png';
 import loginIcon from './icons/avatar.png';
 export default function AdminNav() {
   return (
-        <ul className="flex justify-around bg-[#9CB7C8]">
+        <ul className="flex justify-around bg-[#9CB7C8] py-3">
           <li className="mr-3">
-            <a className="inline-block rounded-full py-2 px-4 bg-[#729458] hover:bg-[#3E592A] text-[#0C0C0C] flex items-center cursor-pointer" href="#">
+            <a className="inline-block rounded-full py-2 px-4 bg-[#729458] hover:bg-[#3E592A] text-[#0C0C0C] flex items-center" href="#">
               <Image 
                   src={homeIcon} 
                   alt="Home" 
@@ -38,7 +38,7 @@ export default function AdminNav() {
                   height={20} 
                   className="mr-1 inline-block" 
               />
-              Review Account
+              Review Accounts
             </a>
           </li>
           <li className="mr-3">
