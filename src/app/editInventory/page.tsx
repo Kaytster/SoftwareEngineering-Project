@@ -1,6 +1,6 @@
 import '../globals.css'
 import Image from 'next/image';
-import sampleImage from '../components/icons/sampleIMG.jpg';
+import sampleImage from '@/app/components/icons/sampleIMG.jpg';
 import CharityNav from '../components/charityNavigation';
 export default function EditInventory() {
   return (
