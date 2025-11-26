@@ -7,7 +7,7 @@ export default function Home() {
   <main>
     {/* NAV BAR */}
     <header> 
-        {/* <LandingNav /> */}
+        <LandingNav />
     </header>
 
       <div className="relative w-300 h-100 mx-auto mt-20">
