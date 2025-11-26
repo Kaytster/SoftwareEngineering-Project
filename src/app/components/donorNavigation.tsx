@@ -1,0 +1,47 @@
+// <a href="https://www.flaticon.com/free-icons/graph" title="graph icons">Graph icons created by Bamicon - Flaticon</a>
+// <a href="https://www.flaticon.com/free-icons/hand" title="hand icons">Hand icons created by Freepik - Flaticon</a>
+// <a href="https://www.flaticon.com/free-icons/home-button" title="home button icons">Home button icons created by Freepik - Flaticon</a>
+// <a href="https://www.flaticon.com/free-icons/profile" title="profile icons">Profile icons created by Freepik - Flaticon</a>
+"use client"
+import Image from "next/image"
+import { usePathname } from "next/navigation";
+import homeIcon from './icons/home.png';
+import donateIcon from './icons/donate.png';
+import statIcon from './icons/graph.png';
+import userIcon from './icons/avatar.png';
+export default function DonorNav() {
+    const currentPath = usePathname();
+    const links = [
+      {href: '/dashboard/donor', label: 'Home', icon: homeIcon, path: '/dashboard/donor'},
+      {href: '/donationHistory', label: 'My Donations', icon: donateIcon, path: '/donationHistory'},
+      {href: '/statistics/donor', label: 'My Statistics', icon: statIcon, path: '/statistics/donor'},
+      {href: '/account/donor', label: 'My Account', icon: userIcon, path: '/account/donor'},
+    ];
+    const navItems = "inline-block rounded-full py-2 px-4 hover:bg-[#3E592A] text-[#0C0C0C] flex items-center";
+    const getLinks = (path: string) => {
+      const isActive = currentPath == path;
+      let linkItems = `${navItems} hover:bg-[#3b512a]`;
+      if (isActive) {
+        linkItems = `${navItems} bg-[#729458] hover:bg-[#3E592A]`;
+      }
+      return linkItems;
+    };
+  return (
+        <ul className="flex justify-around bg-[#9CB7C8]">
+              {links.map((link) => (
+                <li key={link.path} className="mr-3">
+                  <a className={getLinks(link.path)} href={link.href}>
+                    <Image 
+                          src={link.icon} 
+                          alt={link.label} 
+                          width={20} 
+                          height={20} 
+                          className="mr-1 inline-block" 
+                      />
+                      {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+  )
+}
