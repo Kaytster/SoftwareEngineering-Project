@@ -34,12 +34,6 @@ n
 .bg-paper {
   background-color: var(--color-paper);
 }
-.bg-light-secondary {
-  background-color: var(--color-light-secondary);
-}
-.rounded-2\.5xl {
-  border-radius: calc(var(--radius-sm) * 5);
-}
 
 @media (prefers-color-scheme: dark) {
   :root {
