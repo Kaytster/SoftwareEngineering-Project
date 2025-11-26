@@ -1,7 +1,7 @@
 import '../globals.css'
-import AdminNav from '../components/charityNavigation';
+import AdminNav from '../components/adminNavigation';
 import Image from 'next/image';
-import avatar from '../components/icons/avatar.png';
+import avatar from '../components/icons/pfp-icon-temp.png';
 export default function Function1() {
   return (
     <main>
@@ -21,20 +21,24 @@ export default function Function1() {
                         />
                     </div>
                     <button className=" mt-4 bg-[#729458] hover:bg-[#B6D99B] text-[#0C0C0C] font-bold py-2 px-4 rounded-full">
-                        Submit
+                        Add/Edit Image
                     </button>
                 </div>
                 
                 <div className="flex flex-col p-10 justify-center">
-                    <div className='inline-block p-10 rounded-md bg-[#729458] text-[#0C0C0C] text-2xl min-w-150 min-h-100'>
+                    <div className='inline-block p-12 rounded-md bg-[#9CB7C8] text-[#0C0C0C] text-2xl min-w-150 min-h-100'>
                         <p>[username]</p>
+                        <br />
                         <p>type: Donor</p>
+                        <br />
                         <p>Name: [First Last]</p>
+                        <br />
                         <p>Email: [email address]</p>
+                        <br />
                         <p>Pick up point: [address]</p>
                     </div>
                     <button className=" mt-4 bg-[#729458] hover:bg-[#B6D99B] text-[#0C0C0C] font-bold py-2 px-4 rounded-full">
-                        Submit
+                        Edit
                     </button>
                 </div>
             </div>

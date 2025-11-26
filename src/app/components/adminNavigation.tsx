@@ -1,7 +1,7 @@
 import Image from "next/image"
 import homeIcon from './icons/home.png';
-import signupIcon from './icons/add-user.png';
 import loginIcon from './icons/avatar.png';
+import editIcon from './icons/edit-icon-temp.png';
 export default function AdminNav() {
   return (
         <ul className="flex justify-around bg-[#9CB7C8] py-3">
@@ -20,8 +20,8 @@ export default function AdminNav() {
           <li className="mr-3">
             <a className="inline-block rounded-full text-[#0C0C0C] hover:bg-[#B6D99B] py-2 px-4 flex items-center cursor-pointer" href="#">
               <Image 
-                  src={signupIcon} 
-                  alt="Sign Up" 
+                  src={editIcon} 
+                  alt="Review Donations" 
                   width={20} 
                   height={20} 
                   className="mr-1 inline-block" 
@@ -32,8 +32,8 @@ export default function AdminNav() {
           <li className="mr-3">
             <a className="inline-block rounded-full text-[#0C0C0C] hover:bg-[#B6D99B] py-2 px-4 flex items-center cursor-pointer" href="#">
               <Image 
-                  src={loginIcon} 
-                  alt="Log In" 
+                  src={editIcon} 
+                  alt="Review Accounts" 
                   width={20} 
                   height={20} 
                   className="mr-1 inline-block" 
@@ -45,7 +45,7 @@ export default function AdminNav() {
             <a className="inline-block rounded-full text-[#0C0C0C] hover:bg-[#B6D99B] py-2 px-4 flex items-center cursor-pointer" href="#">
               <Image 
                   src={loginIcon} 
-                  alt="Log In" 
+                  alt="My Account" 
                   width={20} 
                   height={20} 
                   className="mr-1 inline-block" 
