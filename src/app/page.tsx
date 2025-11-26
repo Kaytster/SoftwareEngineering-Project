@@ -1,6 +1,6 @@
 import './globals.css'
 import Image from 'next/image';
-//import LandingNav from './components/landingNavigation';
+import LandingNav from './components/landingNavigation';
 
 export default function Home() {
   return (
