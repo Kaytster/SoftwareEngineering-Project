@@ -3,8 +3,9 @@
 :root {
   --background: #FFF6e3;
   --foreground: #0C0C0C;
-  --primary: #9CB7C8;
-  --secondary: #729458;
+  --primary: #9CB7C8; /*powderBlue*/
+  --primaryLight: #dcebf5; /*aliceBlue*/
+  --secondary: #729458; /*sageGreen*/
 }
 
 @theme inline {
