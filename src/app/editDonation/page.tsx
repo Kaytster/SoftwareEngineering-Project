@@ -2,6 +2,9 @@ import '../globals.css'
 import Image from 'next/image';
 import sampleImage from '../components/icons/sampleIMG.jpg';
 import DonorNav from "../components/donorNavigation";
+
+
+
 export default function EditDonation() {
   return (
     <main>

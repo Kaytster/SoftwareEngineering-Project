@@ -2,7 +2,9 @@ import '../globals.css'
 import Image from 'next/image';
 import LandingNav from '../components/landingNavigation';
 
-export default function Home() {
+
+
+export default function Login() {
   return (
   <main>
     {/* NAV BAR */}
