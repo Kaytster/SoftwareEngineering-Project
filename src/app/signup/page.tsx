@@ -59,7 +59,7 @@ export default function SignUp() {
                     </div>
                 </form>
 
-                <button className=" mt-4 bg-[#729458] hover:bg-[#B6D99B] text-[#0C0C0C] font-bold py-2 px-4 rounded-full">
+                <button className="mt-4 bg-[#729458] hover:bg-[#B6D99B] text-[#0C0C0C] font-bold py-2 px-10 text-l rounded-full cursor-pointer">
                     Submit
                 </button>
             </div>

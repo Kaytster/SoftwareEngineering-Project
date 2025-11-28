@@ -8,14 +8,14 @@ import { usePathname } from "next/navigation";
 import homeIcon from './icons/home.png';
 import donateIcon from './icons/donate.png';
 import statIcon from './icons/graph.png';
-import userIcon from './icons/avatar.png';
+import accountIcon from './icons/avatar.png';
 export default function DonorNav() {
     const currentPath = usePathname();
     const links = [
       {href: '/dashboard/donor', label: 'Home', icon: homeIcon, path: '/dashboard/donor'},
       {href: '/donationHistory', label: 'My Donations', icon: donateIcon, path: '/donationHistory'},
       {href: '/statistics/donor', label: 'My Statistics', icon: statIcon, path: '/statistics/donor'},
-      {href: '/account/donor', label: 'My Account', icon: userIcon, path: '/account/donor'},
+      {href: '/account/donor', label: 'My Account', icon: accountIcon, path: '/account/donor'},
     ];
     const navItems = "inline-block rounded-full py-2 px-4 hover:bg-[#3E592A] text-[#0C0C0C] flex items-center";
     const getLinks = (path: string) => {
