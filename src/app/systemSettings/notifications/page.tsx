@@ -20,7 +20,24 @@ const getTypeStyles = (type: AlertType, currentType: AlertType) => {
 }
 
 export default function Notifications() {
-    const {showAlert} = useAlert();
+    const {showAlert, getMessages, updateMessage} = useAlert();
+    const [selectedType, setSelectedType] = useState<AlertType>('Success');
+    const [currentMessage, setCurrentMessage] = useState<string>('');
+
+    useEffect(() => {
+        const messages = getMessages();
+        setCurrentMessage(messages[selectedType]);
+    }, [selectedType, getMessages]);
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setCurrentMessage(e.target.value);
+    };
+
+    const handleSave = () => {
+        updateMessage(selectedType, currentMessage);
+        alert(`New message for ${selectedType} saved!`);
+    };
+    
   return (
       <main>
           <header>
