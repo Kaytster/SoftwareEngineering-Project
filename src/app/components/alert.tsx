@@ -1,5 +1,5 @@
 import React from "react";
-import CloseIcon from "./closeIcon";
+// import CloseIcon from "@/app/components/icons/setting.png";
 
 type AlertType = "Success" | "Error" | "Warning";
 
@@ -25,7 +25,7 @@ const Alert: React.FC<AlertProps> = ({type, message, onClose}) => {
                 </span>
                 <span className="cursor-pointer duration-300 hover:opacity-70"
                       onClick={onClose}>
-                    <CloseIcon />
+                    X
                 </span>
             </div>
             <div className="flex h-4 w-full items-center justify-center rounded-b-lg"
