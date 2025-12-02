@@ -9,4 +9,6 @@ export async function getDb(): Promise<Database> {
     if (db) {
         return db;
     }
+
+    
 }
