@@ -9,7 +9,11 @@
     "lint": "eslint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@types/sqlite3": "^3.1.11",
+=======
+    "bcryptjs": "^3.0.3",
+>>>>>>> c9e116b1999f7273c3de053d00988ba3b4f2df52
     "better-sqlite3": "^12.4.1",
     "chart.js": "^4.5.1",
     "next": "15.5.4",
