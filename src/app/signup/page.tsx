@@ -1,8 +1,14 @@
+"use client"
 import '../globals.css'
+import { useRouter } from 'next/navigation'
 export default function SignUp() {
+    const router = useRouter();
+        const backButton = () => {
+            router.push('/')
+        }
   return (
     <main className="flex justify-center items-center min-h-screen"> 
-        <button className="absolute top-4 left-4 bg-[#729458] hover:bg-[#B6D99B] text-[#fff] text-2xl font-bold py-2 px-4 rounded-full cursor-pointer">
+        <button className="absolute top-4 left-4 bg-[#729458] hover:bg-[#B6D99B] text-[#0C0C0C] font-bold py-2 px-4 rounded-full" onClick={backButton}>
             Back
         </button>
         <div className="flex flex-col items-center">
