@@ -52,15 +52,21 @@ export async function POST (request: Request) {
         const newUserID = `US${formattedIdNumber}`;
 
         const result = await db.run(
-            `INSERT INTO User (UserID, Email, PasswordHash, FirstName, LastName, Role, Status)
-            VALUES (?, ?, ?, ?, ?, ?, ?)`,
-            [newUserID, email, password, firstName, lastName]
+            `INSERT INTO User (UserID, Email, PasswordHash, FirstName, LastName, 
+                         Address, Postcode, PhoneNumber, AvatarImageID, Role, Status)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            [newUserID, email, password, firstName, lastName, 'N/A', 'N/A', 'N/A', 'IMG000', 'Donor', 'Active']
         );
 
         //Redirect the user based or their role
+        return NextResponse.json({
+            message: "User registered successfully",
+            userId: newUserID,
+            email: email
+        }, { status: 201 });
 
     } catch (error) {
-        console.error("Login API Error:", error);
+        console.error("Signup API Error:", error);
         return NextResponse.json(
             {error: "An unexpected error has occured"},
             {status: 500}
