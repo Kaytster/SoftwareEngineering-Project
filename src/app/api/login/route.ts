@@ -33,7 +33,7 @@ export async function POST(request: Request) {
         // Check if user is found
         if (!user) {
             return NextResponse.json(
-                {errpr: "Invalid Email or Password"},
+                {error: "Invalid Email or Password"},
                 {status: 401}
             );
         }
