@@ -1,12 +1,12 @@
-import '../globals.css'
-import AdminNav from '../components/charityNavigation';
+import '@/app/globals.css'
+import CharityNav from '@/app/components/charityNavigation';
 import Image from 'next/image';
-import avatar from '../components/icons/pfp-icon-temp.png';
-export default function Function1() {
+import avatar from '@/app/components/icons/pfp-icon-temp.png';
+export default function CharityAccount() {
   return (
     <main>
         <header>
-            <AdminNav />
+            <CharityNav />
         </header>
         <body>
             <div className="flex p-4 justify-center">

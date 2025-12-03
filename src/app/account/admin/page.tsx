@@ -2,7 +2,7 @@ import '@/app/globals.css'
 import AdminNav from '../../components/adminNavigation';
 import Image from 'next/image';
 import avatar from '@/app/components/icons/pfp-icon-temp.png';
-export default function Function1() {
+export default function AdminAccount() {
   return (
     <main>
         <header>
