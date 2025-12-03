@@ -1,7 +1,7 @@
-import '../globals.css'
+import '@/app/globals.css'
 import AdminNav from '../../components/adminNavigation';
 import Image from 'next/image';
-import avatar from '../components/icons/pfp-icon-temp.png';
+import avatar from '@/app/components/icons/pfp-icon-temp.png';
 export default function Function1() {
   return (
     <main>
