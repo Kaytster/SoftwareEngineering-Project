@@ -55,7 +55,7 @@ export async function POST (request: Request) {
             `INSERT INTO User (UserID, Email, PasswordHash, FirstName, LastName, 
                          Address, Postcode, PhoneNumber, AvatarImageID, Role, Status)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-            [newUserID, email, password, firstName, lastName, 'N/A', 'N/A', 'N/A', 'IMG000', 'Donor', 'Active']
+            [newUserID, email, passwordHash, firstName, lastName, 'N/A', 'N/A', 'N/A', 'IMG000', 'Donor', 'Active']
         );
 
         //Redirect the user based or their role
