@@ -1,9 +1,14 @@
 import Card from "@/app/components/Card";
 import StatusPill from "@/app/components/StatusPill";
 import Image from "next/image";
+import DonorNav from "@/app/components/donorNavigation";
 
 export default function DonorDashboard() {
   return (
+  <main>
+    <header>
+      <DonorNav />
+    </header>
     <div className="flex justify-around">
       <Card title="Recent Donation">
         <StatusPill status="success">Donation accepted</StatusPill>
@@ -46,5 +51,6 @@ export default function DonorDashboard() {
         </p>
       </Card>
     </div>
+  </main>
   );
 }
