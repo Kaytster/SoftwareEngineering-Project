@@ -57,7 +57,7 @@ export default function LoginPage() {
 
           {/* error message */}
           {error && (
-            <div className="w-full text-center mb-4 text-red-600 font-semibold">
+            <div className="w-full text-center mb-4 text-[#75100E] font-semibold">
               {error}
             </div>
           )}
