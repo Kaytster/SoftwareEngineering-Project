@@ -39,12 +39,12 @@ export default function AdminDashboard() {
                             className="aspect-1/1 rounded-full bg-secondary flex justify-center items-center text-4xl font-bold"
                             style={{ width: "calc(100% - 3rem)" }}
                         >
-                        10 kg
+                        30
                         </div>
                     </div>
                     <p className="text-center text-xl">
                     <br></br>
-                    CO<sub>2</sub> saved this month
+                    accounts managed this month
                     </p>
                 </div>
             </div>
