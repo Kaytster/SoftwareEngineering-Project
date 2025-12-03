@@ -1,12 +1,17 @@
 import Card from "@/app/components/Card";
-
+import DonorNav from "@/app/components/donorNavigation";
 
 export default function DonorStats() {
   let co2Saved = 100;
   let co2Goal = 120;
   let deg = co2Saved / co2Goal * 360;
 
-  return <div className="flex justify-around">
+  return (
+  <main>
+    <header>
+      <DonorNav />
+    </header>
+   <div className="flex justify-around">
     <Card title="Clothes Donated">
       <div className="aspect-square bg-[url('/images/parcel.png')] bg-cover bg-center flex items-center justify-center">
 
@@ -30,4 +35,6 @@ export default function DonorStats() {
       </div>
     </Card>
   </div>
+  </main>
+  )
 }
