@@ -28,7 +28,7 @@ export default function LoginPage() {
 
     // redirect to page based on role
     if (data.role === "Donor") {
-      window.location.href = "/dashboard";
+      window.location.href = "/dashboard/donor";
     } else if (data.role === "CharityWorker") {
       window.location.href = "/dashboard/charity";
     } else if (data.role === "Admin") {
@@ -57,7 +57,7 @@ export default function LoginPage() {
 
           {/* error message */}
           {error && (
-            <div className="w-full text-center mb-4 text-red-600 font-semibold">
+            <div className="w-full text-center mb-4 text-[#75100E] font-semibold">
               {error}
             </div>
           )}
