@@ -1,11 +1,77 @@
 "use client"
 import '../globals.css'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react';
+
 export default function SignUp() {
     const router = useRouter();
         const backButton = () => {
             router.push('/')
         }
+
+    //Form Data
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPass, setConfirmPass] = useState("");
+
+    //Messages
+    const [error, setError] = useState("");
+    const [checkPass, setCheckPass] = useState("");
+    const [message, setMessage] = useState("");
+
+    const handleSignUp = async (e: React.FormEvent) => {
+      e.preventDefault();
+      setError("");
+      setCheckPass("");
+      setMessage("");
+      
+      if (password.length < 8) {
+        return setCheckPass("Password must be at least 8 characters long.");
+      }
+      if (password !== confirmPass) {
+        return setCheckPass("Passwords do not match.");
+      }
+
+      const formData = {
+        email,
+        password,
+        firstName,
+        lastName,
+      };
+
+      try {
+        const res = await fetch ("/api/signup", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(formData),
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+            setError(data.error || "Registration failed. Please try again.");
+            return;
+        }
+
+        setMessage("Registration successful! Welcome to Sustainwear");
+
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setPassword("");
+        setConfirmPass("");
+
+        setTimeout(() => {
+            router.push('/dashboard/donor');
+        }, 3000);
+      } catch (err) {
+        setError("A network error has occured.");
+        console.error(err);
+      }
+    }
+
   return (
     <main className="flex justify-center items-center min-h-screen"> 
         <button className="absolute top-4 left-4 bg-[#729458] hover:bg-[#B6D99B] text-[#0C0C0C] font-bold py-2 px-4 rounded-full" onClick={backButton}>
