@@ -1,12 +1,12 @@
 import '../globals.css'
-import AdminNav from '../components/adminNavigation';
+import CharityNav from '../components/charityNavigation';
 import Image from 'next/image';
 import sampleImg from '../components/icons/sampleIMG.jpg';
-export default function AdminDashboard() {
+export default function CharityDashboard() {
   return (
     <main>
         <header>
-            <AdminNav />
+            <CharityNav />
         </header>
         <body>
             <div className="flex flex-row p-10 justify-center gap-10">
@@ -39,12 +39,12 @@ export default function AdminDashboard() {
                             className="aspect-1/1 rounded-full bg-secondary flex justify-center items-center text-4xl font-bold"
                             style={{ width: "calc(100% - 3rem)" }}
                         >
-                        30
+                        £200
                         </div>
                     </div>
                     <p className="text-center text-xl">
                     <br></br>
-                    accounts managed this month
+                    made this month
                     </p>
                 </div>
             </div>
