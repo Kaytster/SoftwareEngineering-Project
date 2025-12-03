@@ -4,9 +4,9 @@ import bcrypt from "bcryptjs";
 import { get } from "http";
 
 interface DbUser {
-    id: string;
-    email: string;
-    hashedPassword: string;
+    UserId: string;
+    Email: string;
+    PasswordHash: string;
     Role: string;
 }
 
@@ -26,7 +26,7 @@ export async function POST(request: Request) {
 
         // Query for the user by email
         const user = await db.get<DbUser>(
-            `SELECT Email, PasswordHash, Role FROM User WHERE Email = ?`,
+            `SELECT UserID, Email, PasswordHash, Role FROM User WHERE Email = ?`,
             [email]
         );
 
@@ -39,7 +39,7 @@ export async function POST(request: Request) {
         }
 
         //Compare password with hashed password
-        const isPasswordValid = await bcrypt.compare(password, user.hashedPassword);
+        const isPasswordValid = await bcrypt.compare(password, user.PasswordHash);
         if (!isPasswordValid) {
             return NextResponse.json(
                 {error: "Invalid Email or Password"},
@@ -51,7 +51,7 @@ export async function POST(request: Request) {
         return NextResponse.json({
             message: "Login Successful",
             role: user.Role,
-            email: user.email,
+            email: user.Email,
         }, {status: 200});
 
     } catch (error) {
