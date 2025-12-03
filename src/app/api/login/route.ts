@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
-import {getDb} from '@/lib/db';
+import { getDb } from "../../../../lib/db";
 import bcrypt from "bcryptjs";
 import { get } from "http";
 
-interface User {
+interface DbUser {
     id: string;
     email: string;
     hashedPassword: string;
@@ -39,7 +39,7 @@ export async function POST(request: Request) {
         }
 
         //Compare password with hashed password
-        const isPasswordValid = await bcrypt.compare(password, user.PasswordHash);
+        const isPasswordValid = await bcrypt.compare(password, user.hashedPassword);
         if (!isPasswordValid) {
             return NextResponse.json(
                 {error: "Invalid Email or Password"},
@@ -51,7 +51,7 @@ export async function POST(request: Request) {
         return NextResponse.json({
             message: "Login Successful",
             role: user.Role,
-            email: user.Email,
+            email: user.email,
         }, {status: 200});
 
     } catch (error) {
