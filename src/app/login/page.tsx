@@ -4,46 +4,9 @@ import '../globals.css'
 import Image from 'next/image';
 import LandingNav from '../components/landingNavigation';
 
-export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  
-  
-  async function handleLogin(e: React.FormEvent) {
-    e.preventDefault();
-    setError(""); // reset error
 
-    const res = await fetch("/api/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
-    const data = await res.json();
 
-    if (!res.ok) {
-      setError(data.error || "Login failed");
-      return;
-    }
-
-    // redirect to page based on role
-    if (data.role === "Donor") {
-      window.location.href = "/dashboard/donor";
-    } else if (data.role === "CharityWorker") {
-      window.location.href = "/dashboard/charity";
-    } else if (data.role === "Admin") {
-      window.location.href = "/admin-account";
-    }
-  }
-
-  const togglePassword = () => {
-    const passwordField = document.getElementById("grid-password") as HTMLInputElement | null;
-    if (passwordField) {
-      passwordField.type = passwordField.type === "password" ? "text" : "password";
-    }
-  };
-  
-
+export default function Login() {
   return (
   <main>
     {/* NAV BAR */}
