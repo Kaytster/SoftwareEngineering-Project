@@ -28,7 +28,7 @@ export default function LoginPage() {
 
     // redirect to page based on role
     if (data.role === "Donor") {
-      window.location.href = "/dashboard";
+      window.location.href = "/dashboard/donor";
     } else if (data.role === "CharityWorker") {
       window.location.href = "/dashboard/charity";
     } else if (data.role === "Admin") {
