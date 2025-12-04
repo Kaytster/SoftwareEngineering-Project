@@ -1,4 +1,19 @@
+
+// import bcrypt from 'bcrypt';
 import bcrypt from 'bcryptjs';
+
+// const samplePasswords = [
+//     { id: 'US001', password: 'JohnPass123' },
+//     { id: 'US002', password: 'AmyAdmin123' },
+//     { id: 'US003', password: 'MarkPass123' },
+//     { id: 'US004', password: 'SarahPass123' },
+//     { id: 'US005', password: 'KatePass123' },
+//     { id: 'US006', password: 'TomPass123' },
+//     { id: 'US007', password: 'LucyPass123' },
+//     { id: 'US008', password: 'DanielPass123' },
+//     { id: 'US009', password: 'EllaPass123' },
+//     { id: 'US010', password: 'JoshAdmin123' },
+
 
 const samplePasswords = [
     { id: 'US001', email: 'john@example.com', password: 'JohnPass123', firstName: 'John', middleName: null, lastName: 'Smith', address: '20 River Road, London', postcode: 'SW3 9AA', phone: '+44 20 7946 1001', imageId: 'IM001', role: 'Donor', status: 'Active', charityId: null },
@@ -11,9 +26,26 @@ const samplePasswords = [
     { id: 'US008', email: 'daniel@example.com', password: 'DanielPass123', firstName: 'Daniel', middleName: 'Thomas', lastName: 'Green', address: '81 Silver Street, Glasgow', postcode: 'G2 3AL', phone: '+44 141 888 1008', imageId: 'IM008', role: 'CharityWorker', status: 'Active', charityId: 'CH007' },
     { id: 'US009', email: 'ella@example.com', password: 'EllaPass123', firstName: 'Ella', middleName: 'Grace', lastName: 'Adams', address: '33 Longwood Avenue, Liverpool', postcode: 'L2 9QR', phone: '+44 151 666 1009', imageId: 'IM009', role: 'Donor', status: 'Active', charityId: null },
     { id: 'US010', email: 'josh@example.com', password: 'JoshAdmin123', firstName: 'Josh', middleName: null, lastName: 'Baker', address: '12 Queen Street, Newcastle', postcode: 'NE3 4EX', phone: '+44 191 333 1010', imageId: 'IM010', role: 'Admin', status: 'Active', charityId: 'CH009' },
+
 ];
 
 const saltRounds = 10;
+
+async function generateHashes() {
+    const hashedUsers = [];
+    for (const user of samplePasswords) {
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(user.password, saltRounds);
+        hashedUsers.push({ ...user, hash: hashedPassword });
+
+        console.log(`('${user.id}', '${user.password}', '${hashedPassword}'),`); //check
+    }
+    
+    
+    
+}
+
+generateHashes();
 
 async function GenerateHashes() {
     const sqlValues = [];
@@ -42,3 +74,4 @@ ${sqlValues.join(',\n')};
 }
 
 GenerateHashes();
+
