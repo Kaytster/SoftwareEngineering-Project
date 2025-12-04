@@ -6,22 +6,31 @@ import '@/app/globals.css'
 import Image from 'next/image';
 import Head from 'next/head';
 
-type AlertType = 'Success' | 'Error' | 'Warning';
+type AlertType = 'SuccessfulDonation' | 'UnsuccessfulDonation' | 'DonationAccept' | 'DonationReject' |
+                 'SuccessfulEdit' | 'UnsuccessfulEdit' | 'SuccessfulDelete' | 'UnsuccessfulDelete' |
+                 'SuccessfulEditAcc' | 'UnsuccessfulEditAcc';
 
 const getTypeStyles = (type: AlertType, currentType: AlertType) => {
     const isSelected = type === currentType;
     let base = "px-4 py-2 font-bold transition duration-300 rounded-lg text-white";
 
-    if (type === 'Success') base += isSelected ? 'bg-green-600 shadow-lg' : 'bg-green-500 hover:bg-green-600';
-    if (type === 'Error') base += isSelected ? 'bg-red-600 shadow-lg' : 'bg-red-500 hover:bg-red-600';
-    if (type === 'Warning') base += isSelected ? 'bg-orange-600 shadow-lg' : 'bg-orange-500 hover:bg-orange-600';
+    if (type === 'SuccessfulDonation') base += isSelected ? 'bg-green-600 shadow-lg' : 'bg-green-500 hover:bg-green-600';
+    if (type === 'UnsuccessfulDonation') base += isSelected ? 'bg-red-600 shadow-lg' : 'bg-red-500 hover:bg-red-600';
+    if (type === 'DonationAccept') base += isSelected ? 'bg-orange-600 shadow-lg' : 'bg-orange-500 hover:bg-orange-600';
+    if (type === 'DonationReject') base += isSelected ? 'bg-green-600 shadow-lg' : 'bg-green-500 hover:bg-green-600';
+    if (type === 'SuccessfulEdit') base += isSelected ? 'bg-red-600 shadow-lg' : 'bg-red-500 hover:bg-red-600';
+    if (type === 'UnsuccessfulEdit') base += isSelected ? 'bg-orange-600 shadow-lg' : 'bg-orange-500 hover:bg-orange-600';
+    if (type === 'SuccessfulDelete') base += isSelected ? 'bg-green-600 shadow-lg' : 'bg-green-500 hover:bg-green-600';
+    if (type === 'UnsuccessfulDelete') base += isSelected ? 'bg-red-600 shadow-lg' : 'bg-red-500 hover:bg-red-600';
+    if (type === 'SuccessfulEditAcc') base += isSelected ? 'bg-orange-600 shadow-lg' : 'bg-orange-500 hover:bg-orange-600';
+    if (type === 'UnsuccessfulEditAcc') base += isSelected ? 'bg-green-600 shadow-lg' : 'bg-green-500 hover:bg-green-600';
 
     return base;
 }
 
 export default function Notifications() {
     const {showAlert, getMessages, updateMessage} = useAlert();
-    const [selectedType, setSelectedType] = useState<AlertType>('Success');
+    const [selectedType, setSelectedType] = useState<AlertType>('SuccessfulDonation');
     const [currentMessage, setCurrentMessage] = useState<string>('');
 
     useEffect(() => {
