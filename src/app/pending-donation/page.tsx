@@ -65,7 +65,7 @@ export default function DisplayDonations() {
                         <td className="p-3 border">{d.Colour}</td>
                         <td className="p-3 border">{d.DonorName}</td>
                         <td className="p-3 border">{d.DateTime}</td>
-                        <td className="p-3 border">{d.Status}</td>
+                        <td className="p-3 status-colour border">{d.Status}</td>
                         <td className="p-3 border">
                             <button className="bg-[#729458] text-[18px] text-white px-4 py-2 rounded-full hover:bg-[#B6D99B] cursor-pointer">
                                 Edit status
