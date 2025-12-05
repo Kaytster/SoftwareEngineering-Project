@@ -74,7 +74,7 @@ export default function SignUp() {
 
   return (
     <main className="flex justify-center items-center min-h-screen"> 
-        <button className="absolute top-4 left-4 bg-[#729458] hover:bg-[#B6D99B] text-[#0C0C0C] font-bold py-2 px-4 rounded-full" onClick={backButton}>
+        <button className="absolute top-4 left-4 bg-[#729458] hover:bg-[#B6D99B] text-[#fff] font-bold py-2 px-4 rounded-full cursor-pointer" onClick={backButton}>
             Back
         </button>
         <div className="flex flex-col items-center">

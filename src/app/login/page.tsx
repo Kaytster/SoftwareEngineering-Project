@@ -7,9 +7,9 @@ import LandingNav from '../components/landingNavigation';
 
 export default function LoginPage() {
   const router = useRouter();
-        const backButton = () => {
-            router.push('/')
-        }
+  const backButton = () => {
+      router.push('/')
+  }
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -52,8 +52,8 @@ export default function LoginPage() {
 
   return (
   <main>
-    <button className="absolute top-4 left-4 bg-[#729458] hover:bg-[#B6D99B] text-[#0C0C0C] font-bold py-2 px-4 rounded-full" onClick={backButton}>
-            Back
+    <button className="absolute top-4 left-4 bg-[#729458] hover:bg-[#B6D99B] text-[#fff] font-bold py-2 px-4 rounded-full cursor-pointer" onClick={backButton}>
+      Back
     </button>
 
       <div className="flex justify-center mx-auto mt-20">
