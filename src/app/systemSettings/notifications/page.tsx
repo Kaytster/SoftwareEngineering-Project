@@ -12,7 +12,7 @@ type AlertType = 'SuccessfulDonation' | 'UnsuccessfulDonation' | 'DonationAccept
 
 const getTypeStyles = (type: AlertType, currentType: AlertType) => {
     const isSelected = type === currentType;
-    let base = "px-4 py-2 font-bold transition duration-300 rounded-lg text-white";
+    let base = "px-4 py-2 font-bold transition duration-300 rounded-lg text-white bg-[var(--primary)]";
 
     if (type === 'SuccessfulDonation') base += isSelected ? 'bg-green-600 shadow-lg' : 'bg-green-500 hover:bg-green-600';
     if (type === 'UnsuccessfulDonation') base += isSelected ? 'bg-red-600 shadow-lg' : 'bg-red-500 hover:bg-red-600';
@@ -60,19 +60,21 @@ export default function Notifications() {
                     <h2 className='text-2xl font-bold mb-6 text-foreground'>
                         Customize Alerts
                     </h2>
-                    <div className='flex space-x-4 mb-8 bg-yellow-500 rounded'>
-                        {['Successful Donation', 'Unsuccessful Donation', 'Donation Accepted',
-                          'Donation Rejected', 'Donation Edit Successful', 'Donation Edit Unsuccessful',
-                          'Donation Delete Successful', 'Donation Delete Unsuccessful', 'Account Edit Successful',
-                          'Account Edit Unsuccessful'
-                        ].map((type) => (
-                            <button className={getTypeStyles(type as AlertType, selectedType)}
-                                    key={type}
-                                    onClick={() => setSelectedType(type as AlertType)}
-                            >
-                                {type} Alert
-                            </button>
-                        ))}
+                    <div className='flex space-x-4 mb-8'>
+                        <div className='grid grid-cols-3 gap-3 mb-3'>
+                            {['Successful Donation', 'Unsuccessful Donation', 'Donation Accepted',
+                            'Donation Rejected', 'Donation Edit Successful', 'Donation Edit Unsuccessful',
+                            'Donation Delete Successful', 'Donation Delete Unsuccessful', 'Account Edit Successful',
+                            'Account Edit Unsuccessful'
+                            ].map((type) => (
+                                <button className={getTypeStyles(type as AlertType, selectedType)}
+                                        key={type}
+                                        onClick={() => setSelectedType(type as AlertType)}
+                                >
+                                    {type} Alert
+                                </button>
+                            ))}
+                        </div>
                     </div>
                 </div>
                 {/* col2 */}
@@ -101,7 +103,7 @@ export default function Notifications() {
                             <button className='mt-6 px-6 py-2 bg-[var(--secondary)] text-white rounded-md font-bold hover:opacity-90 transition'
                                 onClick={handleSave}
                         >
-                            Save New {selectedType} Message
+                            Save New Message
                         </button>
                         </div>
                     </div>
