@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+thead{
+    background-color:#376482;
+    color:white;
+    font-size: 18px;
+}
+
+td{
+    background-color:#ffffff;
+    border-color: #c7c2c2;
+}
