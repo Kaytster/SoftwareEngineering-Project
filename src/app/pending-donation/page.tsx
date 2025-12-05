@@ -22,7 +22,7 @@ export default function DisplayDonations() {
 
     const handleEditStatus = (donationId: string) => {
     // Redirect to the edit status page with the donation ID
-    router.push(`/edit-status/${donationId}`);
+        router.push(`../edit-status?donationId=${donationId}`);
     };
 
     return (
@@ -77,7 +77,7 @@ export default function DisplayDonations() {
                         <td className="p-3 status-colour border">{d.Status}</td>
                         <td className="p-3 border">
                             <button className="bg-[#729458] text-[18px] text-white px-4 py-2 rounded-full hover:bg-[#B6D99B]
-                             cursor-pointer onClick={() => handleEditStatus(d.DonationID)}">
+                             cursor-pointer" onClick={() => handleEditStatus(d.DonationID)}>
                                 Edit status
                             </button>
                         </td>
