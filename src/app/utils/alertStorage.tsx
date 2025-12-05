@@ -1,4 +1,6 @@
-type AlertType = 'Success' | 'Error' | 'Warning';
+type AlertType = 'SuccessfulDonation' | 'UnsuccessfulDonation' | 'DonationAccept' | 'DonationReject' |
+                 'SuccessfulEdit' | 'UnsuccessfulEdit' | 'SuccessfulDelete' | 'UnsuccessfulDelete' |
+                 'SuccessfulEditAcc' | 'UnsuccessfulEditAcc';
 
 export type AlertMessages = {
     [key in AlertType]: string;
@@ -7,9 +9,16 @@ export type AlertMessages = {
 const STORAGE_KEY = 'adminAlertMessages';
 
 const defaultMessages: AlertMessages = {
-    Success: 'Success!',
-    Error: 'Error!',
-    Warning: 'Warning',
+    SuccessfulDonation: 'Success!',
+    UnsuccessfulDonation: 'Error!',
+    DonationAccept: 'Success!',
+    DonationReject: 'Error!',
+    SuccessfulEdit: 'Success!',
+    UnsuccessfulEdit: 'Error!',
+    SuccessfulDelete: 'Success!',
+    UnsuccessfulDelete: 'Error!',
+    SuccessfulEditAcc: 'Success!',
+    UnsuccessfulEditAcc: 'Error!',
 };
 
 export const loadAlertMessages = (): AlertMessages => {

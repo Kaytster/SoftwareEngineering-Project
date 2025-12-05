@@ -60,8 +60,12 @@ export default function Notifications() {
                     <h2 className='text-2xl font-bold mb-6 text-foreground'>
                         Customize Alerts
                     </h2>
-                    <div className='flex space-x-4 mb-8'>
-                        {['Success', 'Error', 'Warning'].map((type) => (
+                    <div className='flex space-x-4 mb-8 bg-yellow-500 rounded'>
+                        {['Successful Donation', 'Unsuccessful Donation', 'Donation Accepted',
+                          'Donation Rejected', 'Donation Edit Successful', 'Donation Edit Unsuccessful',
+                          'Donation Delete Successful', 'Donation Delete Unsuccessful', 'Account Edit Successful',
+                          'Account Edit Unsuccessful'
+                        ].map((type) => (
                             <button className={getTypeStyles(type as AlertType, selectedType)}
                                     key={type}
                                     onClick={() => setSelectedType(type as AlertType)}
