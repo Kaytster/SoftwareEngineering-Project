@@ -1,11 +1,17 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState,  } from "react";
+import { useRouter } from 'next/navigation'
 import Image from "next/image";
 import AdminNav from "../components/charityNavigation";
 import "../globals.css";
 import "../pending-donation/donation.css";
 
 export default function DisplayInventory() {
+    const router = useRouter();
+  const editButton = () => {
+      router.push('/editInventory')
+  }
+
     const [donations, setDonations] = useState([]);
 
     // Load donations on page load
@@ -69,7 +75,8 @@ export default function DisplayInventory() {
                         <td className="p-3 border">{d.DateTime}</td>
                         <td className="p-3 border">{d.Status}</td>
                         <td className="p-3 border">
-                            <button className="bg-[#729458] text-[18px] text-white px-4 py-2 rounded-full hover:bg-[#B6D99B] cursor-pointer">
+                            <button className="bg-[#729458] text-[18px] text-white px-4 py-2 rounded-full hover:bg-[#B6D99B] cursor-pointer"
+                                    onClick={editButton}>
                                 Edit
                             </button>
                         </td>
