@@ -31,10 +31,8 @@ const getTypeStyles = (type: AlertType, currentType: AlertType) => {
 } else {
     colourClasses = ' bg-[var(--primary)]';
     if (successAlerts.includes(type)) {
-            // Light green on hover
             colourClasses += ' hover:bg-green-400 hover:shadow-md';
         } else if (unsuccessfulAlerts.includes(type)) {
-            // Light red on hover
             colourClasses += ' hover:bg-red-400 hover:shadow-md';
         } else {
             colourClasses = ' bg-[var(--primary)]';
@@ -59,7 +57,6 @@ const getTypeStyles = (type: AlertType, currentType: AlertType) => {
 }
 
 const formatAlertType = (type: AlertType) => {
-    // Converts 'SuccessfulDonation' to 'Successful Donation'
     return type.replace(/([A-Z])/g, ' $1').trim();
 }
 
@@ -72,7 +69,7 @@ export default function Notifications() {
         'SuccessfulDonation', 'UnsuccessfulDonation', 'DonationAccept',
         'DonationReject', 'SuccessfulEdit', 'UnsuccessfulEdit',
         'SuccessfulDelete', 'UnsuccessfulDelete', 'SuccessfulEditAcc',
-        'UnsuccessfulEditAcc' // The 10th type
+        'UnsuccessfulEditAcc' 
     ];
 
     useEffect(() => {
