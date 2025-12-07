@@ -1,17 +1,20 @@
 import React from "react";
 import DonorDashboard from "./DonorDashboard";
 import { Metadata } from "next";
+import { verifySession } from "../../../../lib/session";
 
 export const metadata: Metadata = {
 	title: "Dashboard | SustainWear"
 }
 
-export default function Dashboard() {
-	let signedAsDonor = true;
+export default async function Dashboard() {
+	const session = await verifySession();
 
-	if (signedAsDonor) {
+	if (!session) {
+		return <div>
+			You must be logged in to access this page!
+		</div>
+	} else {
 		return <DonorDashboard />
 	}
-	
-	return "Not signed in"
 }

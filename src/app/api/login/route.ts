@@ -2,9 +2,10 @@ import { NextResponse } from "next/server";
 import { getDb } from "../../../../lib/db";
 import bcrypt from "bcryptjs";
 import { get } from "http";
+import { createSession } from "../../../../lib/session";
 
 interface DbUser {
-    UserId: string;
+    UserID: string;
     Email: string;
     PasswordHash: string;
     Role: string;
@@ -45,6 +46,12 @@ export async function POST(request: Request) {
                 {error: "Invalid Email or Password"},
                 {status: 401}
             );
+        }
+
+        // store the session in cookies
+        let sessionRes = await createSession(user.UserID, user.Role);
+        if (!sessionRes) {
+            console.error("Error creating a session while sucessfully trying to log in");
         }
 
         //Redirect the user based or their role
