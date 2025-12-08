@@ -9,7 +9,7 @@ import "../pending-donation/donation.css";
 export default function DisplayInventory() {
     const router = useRouter();
   const editButton = () => {
-      router.push('/editInventory')
+      router.push(`/editInventory/${itemId}`)
   }
 
     const [donations, setDonations] = useState([]);
