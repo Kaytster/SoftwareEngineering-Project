@@ -12,12 +12,20 @@ export async function GET(request: NextRequest, {params}: {params: {itemId: stri
         const db = await getDb();
 
         const query = `SELECT
-        ci.ItemID, ci.Category, ci.Description, ci.Colour, ci.Brand,
-        ci.ClothingSize, ci.ImageID, i.ServerName as currentImageServerName
+        ci.ItemID, 
+        c.Description AS Category, 
+        ci.Description AS ItemDescription, 
+        ci.Colour, 
+        ci.Brand,
+        ci.ClothingSize, 
+        ci.ImageID, 
+        i.ServerName as currentImageServerName
         FROM
         ClothingItem ci
         JOIN
         Image i ON ci.ImageId = i.ImageID
+        JOIN
+        Category c ON c.CategoryID = ci.CategoryID
         WHERE
         ci.ItemID = ?`;
 
