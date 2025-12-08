@@ -1,3 +1,4 @@
+//"use client"
 import { NextResponse } from "next/server";
 import { getDb } from "../../../../lib/db";
 
@@ -5,7 +6,15 @@ export async function GET() {
   try {
     const db = await getDb();
     const donations = await db.all(`
-      SELECT d.DonationID, ci.ItemID, i.ServerName, c.Description, ci.ClothingSize, ci.Brand, ci.Colour, 
+      SELECT 
+        d.DonationID, 
+        ci.ItemID, 
+        i.ServerName, 
+        c.Description AS Category, 
+        ci.Description AS ItemDescription, 
+        ci.ClothingSize, 
+        ci.Brand, 
+        ci.Colour, 
         u.UserID, 
         u.FirstName || ' ' || COALESCE(u.MiddleName || ' ', '') || u.LastName AS DonorName, 
         d.DateTime, 
@@ -21,7 +30,7 @@ export async function GET() {
     return NextResponse.json(donations);
   } 
   catch (error) {
-    console.error(error);
+    console.error("Fetch Item APU Error", error);
     return NextResponse.json(
       { error: "Failed to load donations" }, 
       { status: 500 }
