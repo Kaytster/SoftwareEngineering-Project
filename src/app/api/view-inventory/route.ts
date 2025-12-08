@@ -5,7 +5,7 @@ export async function GET() {
   try {
     const db = await getDb();
     const donations = await db.all(`
-      SELECT d.DonationID, i.ServerName, c.Description, ci.ClothingSize, ci.Brand, ci.Colour, 
+      SELECT d.DonationID, ci.ItemID, i.ServerName, c.Description, ci.ClothingSize, ci.Brand, ci.Colour, 
         u.UserID, 
         u.FirstName || ' ' || COALESCE(u.MiddleName || ' ', '') || u.LastName AS DonorName, 
         d.DateTime, 
