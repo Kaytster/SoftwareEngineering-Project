@@ -2,7 +2,7 @@
 import '@/app/globals.css'
 import Image from 'next/image';
 import AdminNav from '@/app/components/adminNavigation';
-import { Line, LineChart } from 'recharts';
+import { CartesianGrid, Line, LineChart, XAxis, YAxis, Legend } from 'recharts';
 
 //How many active users
 //How many accepted donations
@@ -49,7 +49,11 @@ export default function Reports() {
                 <div className="flex space-x-6 h-full">
                     <LineChart style={{width: '100%', aspectRatio: 1.618, maxWidth: 600}}
                                responsive data={data}>
+                        <CartesianGrid />    
                         <Line dataKey="uv" />
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        <Legend />
                     </LineChart>
                 </div>
             </div>  
