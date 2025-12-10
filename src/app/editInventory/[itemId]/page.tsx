@@ -127,13 +127,18 @@ export default function EditInventory() {
             <CharityNav />
         </header>
 
-        <div className="relative w-300 h-130 mx-auto mt-20">
-            <div className="absolute inset-0 p-8 bg-[#E9F1F6] border-2 border-[#729458] rounded-lg shadow-xl z-20">
+        {/* container1 */}
+        <div className="relative w-full max-w-5xl h-130 mx-auto mt-20">
+
+            {/* container2 */}
+            <div className="absolute h-fit inset-0 p-8 bg-[#E9F1F6] border-2 border-[#729458] rounded-lg shadow-xl z-20">
             
             {error && <div className="text-red-700 bg-red-100 p-3 mb-4 rounded font-semibold">{error}</div>}
           {successMessage && <div className="text-green-700 bg-green-100 p-3 mb-4 rounded font-semibold">{successMessage}</div>}
             
+            {/* container3 */}
             <div className="flex space-x-6 h-full">
+                {/* container 4 */}
                 <div className="w-1/3 flex  flex-col justify-center items-center">
                     {/* Item Image*/}
                     <Image 
@@ -146,12 +151,13 @@ export default function EditInventory() {
 
                 </div>
                 {/* col2 */}
+                {/* container 5 */}
                 <div className="w-1/3 flex  flex-col justify-center items-center">
-                        <div className="relative w-50 h-100 mx-auto mb-1 bg-[#9CB7C8] rounded-md flex flex-col items-center justify-center"> 
-                            <div className='inline-block rounded-md bg-[#729458] text-[#0C0C0C] text-2xl px-3'>Edit Details</div>
+                        <div className="  relative w-full p-4 mx-auto mb-1 bg-[#9CB7C8] rounded-md flex flex-col items-center justify-center"> 
+                            <div className='inline-block  rounded-md bg-[#729458] text-[#0C0C0C] text-2xl px-3'>Edit Details</div>
                             <form className="space-y-4" onSubmit={handleSubmit}>
                                 <div>
-                                    <label htmlFor="category" className="block mb-2 mt-5 text-sm font-medium text-[#0C0C0C]">
+                                    <label htmlFor="category" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                                         Item Name
                                     </label>
                                     <input
@@ -160,13 +166,12 @@ export default function EditInventory() {
                                         name='category'
                                         value={formData.category}
                                         onChange={handleInputChange}
-                                        className="w-40 px-4 py-2 border-2
-                                                border-[#57809A] rounded-md
-                                                focus:outline-none focus:ring-2
-                                                focus:ring-blue-500 bg-[#DBEBF4] mb-5"
+                                        className='appearance-none block w-full bg-gray-200 text-gray-700 
+                                                   border border-gray-200 rounded py-3 px-4 mb-3 
+                                                   leading-tight focus:outline-none focus:bg-white'  
                                         placeholder="Enter Item Name"
                                     />
-                                    <label htmlFor='description' className="block mb-2 text-sm font-medium text-[#0C0C0C]">
+                                    <label htmlFor='description' className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                                         Description
                                     </label>
                                     <textarea
@@ -174,51 +179,47 @@ export default function EditInventory() {
                                         name='description'
                                         value={formData.description}
                                         onChange={handleInputChange}
-                                        className="w-40 px-4 py-2 border-2
-                                                border-[#57809A] rounded-md
-                                                focus:outline-none focus:ring-2
-                                                focus:ring-blue-500 bg-[#DBEBF4] mb-5"
+                                        className='appearance-none block w-full bg-gray-200 text-gray-700 
+                                                   border border-gray-200 rounded py-3 px-4 mb-3 
+                                                   leading-tight focus:outline-none focus:bg-white' 
                                         placeholder="Enter Item Description"
                                     />
-                                    {/* <label className="block mb-2 text-sm font-medium text-[#0C0C0C]">
-                                        Tags
-                                    </label>
-                                    <input
-                                        type="text"
-                                        className="w-40 px-4 py-2 border-2
-                                                border-[#57809A] rounded-md
-                                                focus:outline-none focus:ring-2
-                                                focus:ring-blue-500 bg-[#DBEBF4]"
-                                        placeholder="Enter Tags"
-                                    /> */}
-                                    <label htmlFor="colour" className="block mb-1 text-sm font-medium text-[#0C0C0C]">Colour</label>
-                                    <input
-                                        type="text"
-                                        id="colour"
-                                        name="colour"
-                                        value={formData.colour}
-                                        onChange={handleInputChange}
-                                        className="w-full px-4 py-2 border-2 border-[#57809A] rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#DBEBF4]"
-                                    />
-                                    <label htmlFor="brand" className="block mb-1 text-sm font-medium text-[#0C0C0C]">Brand</label>
-                                    <input
-                                        type="text"
-                                        id="brand"
-                                        name="brand"
-                                        value={formData.brand}
-                                        onChange={handleInputChange}
-                                        className="w-full px-4 py-2 border-2 border-[#57809A] rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#DBEBF4]"
-                                    />
-                                    <label htmlFor="clothingSize" className="block mb-1 text-sm font-medium text-[#0C0C0C]">Size</label>
+                                     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                        <label htmlFor="colour" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Colour</label>
+                                        <input
+                                            type="text"
+                                            id="colour"
+                                            name="colour"
+                                            value={formData.colour}
+                                            onChange={handleInputChange}
+                                            className='appearance-none block w-full bg-gray-200 text-gray-700 
+                                                   border border-gray-200 rounded py-3 px-4 mb-3 
+                                                   leading-tight focus:outline-none focus:bg-white' 
+                                        />
+                                        <label htmlFor="brand" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Brand</label>
+                                        <input
+                                            type="text"
+                                            id="brand"
+                                            name="brand"
+                                            value={formData.brand}
+                                            onChange={handleInputChange}
+                                            className='appearance-none block w-full bg-gray-200 text-gray-700 
+                                                   border border-gray-200 rounded py-3 px-4 mb-3 
+                                                   leading-tight focus:outline-none focus:bg-white' 
+                                        />
+                                     </div>
+                                    <label htmlFor="clothingSize" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Size</label>
                                     <input
                                         type="text"
                                         id="clothingSize"
                                         name="clothingSize"
                                         value={formData.clothingSize}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-2 border-2 border-[#57809A] rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#DBEBF4]"
+                                        className='appearance-none block w-full bg-gray-200 text-gray-700 
+                                                   border border-gray-200 rounded py-3 px-4 mb-3 
+                                                   leading-tight focus:outline-none focus:bg-white' 
                                     />
-                                    <label htmlFor="newImageServerName" className="block mb-1 text-sm font-medium text-[#0C0C0C]">Image Filename</label>
+                                    <label htmlFor="newImageServerName" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Image Filename</label>
                                     <input
                                         type="text"
                                         id="newImageServerName"
@@ -226,7 +227,9 @@ export default function EditInventory() {
                                         value={formData.newImageServerName}
                                         onChange={handleInputChange}
                                         placeholder="e.g., shirt2.png"
-                                        className="w-full px-4 py-2 border-2 border-[#57809A] rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#DBEBF4]"
+                                        className='appearance-none block w-full bg-gray-200 text-gray-700 
+                                                   border border-gray-200 rounded py-3 px-4 mb-3 
+                                                   leading-tight focus:outline-none focus:bg-white' 
                                     />
                                 </div>
                             </form>
@@ -237,42 +240,7 @@ export default function EditInventory() {
                         </button>
                     </div>
                 {/* Col 3 */}
-                <div className="w-1/3 flex  flex-col justify-center items-center">
-                        <div className="relative w-50 h-100 mx-auto mb-1 bg-[#9CB7C8] rounded-md flex flex-col items-center justify-center"> 
-                            <div className='inline-block rounded-md bg-[#729458] text-[#0C0C0C] text-2xl px-3'>Actions</div>
-                            <form className="space-y-4">
-                                <div>
-                                    
-                                    <input id="default-checkbox" type="checkbox" value="" className="w-4 h-4 checked:text-red-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                                    <label className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Delete</label>
-                                    <label className="block mb-2 text-sm font-medium text-[#0C0C0C]">
-                                        Description
-                                    </label>
-                                    <textarea
-                                        className="w-40 px-4 py-2 border-2
-                                                border-[#57809A] rounded-md
-                                                focus:outline-none focus:ring-2
-                                                focus:ring-blue-500 bg-[#DBEBF4] mb-5"
-                                        placeholder="Enter Item Description"
-                                    />
-                                    <label className="block mb-2 text-sm font-medium text-[#0C0C0C]">
-                                        Tags
-                                    </label>
-                                    <input
-                                        type="text"
-                                        className="w-40 px-4 py-2 border-2
-                                                border-[#57809A] rounded-md
-                                                focus:outline-none focus:ring-2
-                                                focus:ring-blue-500 bg-[#DBEBF4]"
-                                        placeholder="Enter Tags"
-                                    />
-                                </div>
-                            </form>
-                        </div>
-                        <button className=" mt-4 bg-[#729458] hover:bg-[#B6D99B] text-[#0C0C0C] font-bold py-2 px-4 rounded-full">
-                            Submit
-                        </button>
-                </div>
+                
                 </div>
             </div>  
         </div>
