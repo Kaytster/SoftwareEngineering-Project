@@ -1,10 +1,16 @@
+'use client'
 import '@/app/globals.css'
 import Image from 'next/image';
 import AdminNav from '@/app/components/adminNavigation';
+import { useEffect, useRef } from 'react';
+
 export default function Reports() {
+
 
   return (
     <main>
+        
+
         <header>
             <AdminNav />
         </header>
