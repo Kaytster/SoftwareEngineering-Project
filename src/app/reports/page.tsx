@@ -47,8 +47,9 @@ export default function Reports() {
         <div className="relative w-300 h-100 mx-auto mt-20">
             <div className="absolute inset-0 p-8 bg-[#E9F1F6] border-2 border-[#729458] rounded-lg shadow-xl z-20">
                 <div className="flex space-x-6 h-full">
-                    <LineChart style={{width: '100%', aspectRatio: 1.618, maxWidth: 600}}
-                               responsive data={data}>
+                    <LineChart style={{width: '100%', aspectRatio: 1.618, maxWidth: 600, backgroundColor:"white", borderRadius: 20, paddingRight: 20}}
+                               responsive data={data}
+                               margin={{top: 20, right: 20, bottom: 5, left: 0}}>
                         <CartesianGrid />    
                         <Line dataKey="uv" />
                         <XAxis dataKey="name" />
