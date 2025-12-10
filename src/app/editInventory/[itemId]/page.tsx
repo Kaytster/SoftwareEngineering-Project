@@ -29,6 +29,8 @@ export default function EditInventory() {
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
   const [formData, setFormData] = useState({
     category: '',
     description: '',
@@ -82,15 +84,26 @@ export default function EditInventory() {
     setSuccessMessage(null);
     setSubmitting(true);
 
-    const dataToSubmit = {
-        itemId: itemId,
-        ...formData,
-    };
+    const formDataPayload = new FormData();
+
+    formDataPayload.append('itemId', itemId!);
+    formDataPayload.append('category', formData.category);
+    formDataPayload.append('description', formData.description);
+    formDataPayload.append('colour', formData.colour);
+    formDataPayload.append('brand', formData.brand);
+    formDataPayload.append('clothingSize', formData.clothingSize);
+
+    if (selectedFile) {
+        formDataPayload.append('newImageFile', selectedFile);
+    } else {
+        formDataPayload.append('currentImageServerName', formData.newImageServerName);
+    }
+
     try {
         const response = await fetch('/api/edit-inventory', {
             method: 'PUT',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(dataToSubmit),
+            //headers: {'Content-Type': 'application/json'},
+            body: formDataPayload,
         });
 
         const result = await response.json();
@@ -106,6 +119,14 @@ export default function EditInventory() {
         setError(err.message);
     } finally {
         setSubmitting(false);
+    }
+  };
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+        setSelectedFile(e.target.files[0]);
+    } else {
+        setSelectedFile(null);
     }
   };
 
@@ -171,8 +192,8 @@ export default function EditInventory() {
                     <Image 
                     src={`/images/${item.currentImageServerName}`}
                     alt={`${item.Category} image`}
-                    width={20} 
-                    height={20} 
+                    width={200} 
+                    height={300} 
                     className="mr-1 inline-block w-70  h-130 rounded-md " 
                 />
 
@@ -262,18 +283,22 @@ export default function EditInventory() {
                                             ))}
                                         </select>
                                     {/* IMAGE */}
-                                    <label htmlFor="newImageServerName" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Image Filename</label>
+                                    <label htmlFor="newImageServerName" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Upload New Image</label>
                                     <input
-                                        type="text"
-                                        id="newImageServerName"
-                                        name="newImageServerName"
-                                        value={formData.newImageServerName}
-                                        onChange={handleInputChange}
-                                        placeholder="e.g., shirt2.png"
+                                        type="file"
+                                        id="imageFile"
+                                        name="imageFile"
+                                        accept="image/*"
+                                        onChange={handleFileChange}
                                         className='appearance-none block w-full bg-gray-200 text-gray-700 
                                                    border border-gray-200 rounded py-3 px-4 mb-3 
                                                    leading-tight focus:outline-none focus:bg-white' 
                                     />
+                                    {selectedFile && (
+                                        <p className='mt-1 text-xs text-[#0C0C0C'>
+                                            File selected: {selectedFile.name}
+                                        </p>
+                                    )}
                                 </div>
                             </form>
                         </div>
