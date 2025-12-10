@@ -68,7 +68,7 @@ export default function EditInventory() {
     fetchItemData();
   }, [itemId]);
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const {name, value} = e.target;
     setFormData((prevData) => ({
         ...prevData,
@@ -121,6 +121,33 @@ export default function EditInventory() {
       return <main className="flex justify-center items-center min-h-screen">Item not found.</main>;
   }
 
+  //Colours for the drop down menu
+  const availableColours = [
+    'Red',
+    'Orange',
+    'Yellow',
+    'Green',
+    'Blue',
+    'Purple',
+    'Pink',
+    'White',
+    'Black',
+    'Silver',
+    'Gold',
+    'Multi',
+    'Other'
+  ];
+  const availableSizes = [
+    'XXS',
+    'XS',
+    'S',
+    'M',
+    'L',
+    'XL',
+    'XXL',
+    'Other'
+  ];
+
   return (
     <main>
         <header>
@@ -157,6 +184,7 @@ export default function EditInventory() {
                             <div className='inline-block  rounded-md bg-[#729458] text-[#0C0C0C] text-2xl px-3'>Edit Details</div>
                             <form className="space-y-4" onSubmit={handleSubmit}>
                                 <div>
+                                    {/* NAME */}
                                     <label htmlFor="category" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                                         Item Name
                                     </label>
@@ -171,6 +199,7 @@ export default function EditInventory() {
                                                    leading-tight focus:outline-none focus:bg-white'  
                                         placeholder="Enter Item Name"
                                     />
+                                    {/* DESCRIPTION */}
                                     <label htmlFor='description' className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                                         Description
                                     </label>
@@ -185,9 +214,9 @@ export default function EditInventory() {
                                         placeholder="Enter Item Description"
                                     />
                                      <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                     {/* COLOUR */}
                                         <label htmlFor="colour" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Colour</label>
-                                        <input
-                                            type="text"
+                                        <select
                                             id="colour"
                                             name="colour"
                                             value={formData.colour}
@@ -195,7 +224,14 @@ export default function EditInventory() {
                                             className='appearance-none block w-full bg-gray-200 text-gray-700 
                                                    border border-gray-200 rounded py-3 px-4 mb-3 
                                                    leading-tight focus:outline-none focus:bg-white' 
-                                        />
+                                        > 
+                                            {availableColours.map((colour) => (
+                                                <option key={colour} value={colour}>
+                                                    {colour}
+                                                </option>
+                                            ))}
+                                        </select>
+                                        {/* BRAND */}
                                         <label htmlFor="brand" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Brand</label>
                                         <input
                                             type="text"
@@ -208,17 +244,24 @@ export default function EditInventory() {
                                                    leading-tight focus:outline-none focus:bg-white' 
                                         />
                                      </div>
+                                     {/* SIZE */}
                                     <label htmlFor="clothingSize" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Size</label>
-                                    <input
-                                        type="text"
-                                        id="clothingSize"
-                                        name="clothingSize"
-                                        value={formData.clothingSize}
-                                        onChange={handleInputChange}
-                                        className='appearance-none block w-full bg-gray-200 text-gray-700 
+                                    <select
+                                            id="clothingSize"
+                                            name="clothingSize"
+                                            value={formData.clothingSize}
+                                            onChange={handleInputChange}
+                                            className='appearance-none block w-full bg-gray-200 text-gray-700 
                                                    border border-gray-200 rounded py-3 px-4 mb-3 
                                                    leading-tight focus:outline-none focus:bg-white' 
-                                    />
+                                        > 
+                                            {availableSizes.map((size) => (
+                                                <option key={size} value={size}>
+                                                    {size}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    {/* IMAGE */}
                                     <label htmlFor="newImageServerName" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Image Filename</label>
                                     <input
                                         type="text"
