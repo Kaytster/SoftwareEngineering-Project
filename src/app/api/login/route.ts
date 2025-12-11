@@ -48,6 +48,16 @@ export async function POST(request: Request) {
             );
         }
 
+        //Update the last login date.
+        try {
+            await db.run(
+                `UPDATE User SET LastLoginDate = CURRENT_TIMESTAMP WHERE UserID = ?`,
+                [user.UserID]
+            );
+        } catch (dbUpdateError) {
+            console.error("Failed to update login date: ", dbUpdateError)
+        }
+
         // store the session in cookies
         let sessionRes = await createSession(user.UserID, user.Role);
         if (!sessionRes) {
