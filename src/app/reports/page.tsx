@@ -26,20 +26,20 @@ import { useState, useEffect } from 'react';
 //     {month: 'Dec', activeUsers: 30},
 // ];
 
-const acceptedDonationsData = [
-    {month: 'Jan', acceptedDonations: 10},
-    {month: 'Feb', acceptedDonations: 15},
-    {month: 'Mar', acceptedDonations: 20},
-    {month: 'Apr', acceptedDonations: 25},
-    {month: 'May', acceptedDonations: 30},
-    {month: 'Jun', acceptedDonations: 50},
-    {month: 'Jul', acceptedDonations: 20},
-    {month: 'Aug', acceptedDonations: 21},
-    {month: 'Sep', acceptedDonations: 32},
-    {month: 'Oct', acceptedDonations: 33},
-    {month: 'Nov', acceptedDonations: 30},
-    {month: 'Dec', acceptedDonations: 30},
-];
+// const acceptedDonationsData = [
+//     {month: 'Jan', acceptedDonations: 10},
+//     {month: 'Feb', acceptedDonations: 15},
+//     {month: 'Mar', acceptedDonations: 20},
+//     {month: 'Apr', acceptedDonations: 25},
+//     {month: 'May', acceptedDonations: 30},
+//     {month: 'Jun', acceptedDonations: 50},
+//     {month: 'Jul', acceptedDonations: 20},
+//     {month: 'Aug', acceptedDonations: 21},
+//     {month: 'Sep', acceptedDonations: 32},
+//     {month: 'Oct', acceptedDonations: 33},
+//     {month: 'Nov', acceptedDonations: 30},
+//     {month: 'Dec', acceptedDonations: 30},
+// ];
 const createdDonationsData = [
     {month: 'Jan', createdDonations: 10},
     {month: 'Feb', createdDonations: 15},
@@ -67,6 +67,7 @@ export type ReportData = DataPoint[];
 
 export default function Reports() {
   const [activeUserData, setActiveUserData] = useState<ReportData>([]);
+  const [acceptedDonationsData, setAcceptedDonationsData] = useState<ReportData>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [activeReport, setActiveReport] = useState<ReportName>('activeUsers');
   
