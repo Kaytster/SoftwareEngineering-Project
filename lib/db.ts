@@ -25,5 +25,7 @@ export async function getDb(): Promise<Database> {
         Email TEXT UNIQUE NOT NULL,
         PasswordHash TEXT NOT NULL);
         `);
+
+
     return db;
 }
