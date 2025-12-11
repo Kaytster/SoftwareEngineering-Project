@@ -6,6 +6,7 @@ import donateIcon from './icons/donate.png';
 import inventoryIcon from './icons/inventory.png'
 import statIcon from './icons/graph.png';
 import accountIcon from './icons/avatar.png';
+import Link from "next/link";
 export default function AdminNav() {
   const currentPath = usePathname();
   const links = [
@@ -41,5 +42,6 @@ export default function AdminNav() {
                 </li>
               ))}
             </ul>
-  )
+  );
 }
+   
