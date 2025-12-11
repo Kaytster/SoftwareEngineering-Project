@@ -77,9 +77,9 @@ export default function Reports() {
     const isActive = activeReport === reportName;
     let classes = 'inline-block py-2 px-4 font-semibold cursor-pointer transition duration-150 ease-in-out';
     if (isActive) {
-        classes += 'bg-white border-l border-t border-r rounded-t text-blue-700';
+        classes += 'z-10 bg-[var(--color-primary)] border-l border-t border-r rounded-t text-white';
     } else {
-        classes += 'bg-white text-blue-500 hover:text-blue-800';
+        classes += 'bg-white text-blue-500 hover:text-white hover:bg-[#b5d79a]';
     }
     return classes;
   }
@@ -162,30 +162,31 @@ export default function Reports() {
             <AdminNav />
         </header>
 
-        <div className="relative w-300 h-100 mx-auto mt-20">
+        <div className="relative w-300 h-120 mx-auto mt-20">
             <div className="absolute inset-0 p-8 bg-[#E9F1F6] border-2 border-[#729458] rounded-lg shadow-xl z-20">
                 <div className="flex flex-col space-y-4 space-x-6 h-full">
-                    <div>
+                    
                         <ul className='flex border-b'>
-                            <li className='-mb-px  mr-1'>
+                            <li className='mr-1'>
                                 <a className={getTabClass('activeUsers')} 
                                    onClick={() => setActiveReport('activeUsers')}>
-                                    Tab 1
+                                    Active Users
                                 </a>
                             </li>
                             <li className='mr-1'>
                                 <a className={getTabClass('acceptedDonations')} 
                                    onClick={() => setActiveReport('acceptedDonations')}>
-                                    Tab 2
+                                    Accepted Donations
                                 </a>
                             </li>
                             <li className='mr-1'>
                                 <a className={getTabClass('createdDonations')} 
                                    onClick={() => setActiveReport('createdDonations')}>
-                                    Tab 3
+                                    Created Donations
                                 </a>
                             </li>
                         </ul>
+                    <div className='flex justify-center items-center'>
                         {renderChart()}
                     </div>
                 </div>
