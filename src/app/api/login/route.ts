@@ -3,6 +3,7 @@ import { getDb } from "../../../../lib/db";
 import bcrypt from "bcryptjs";
 import { get } from "http";
 import { createSession } from "../../../../lib/session";
+import { encryptCookie } from "../../../../lib/session";
 
 interface DbUser {
     UserID: string;
@@ -11,6 +12,9 @@ interface DbUser {
     Role: string;
     LastLoginDate: string;
 }
+
+const COOKIE_NAME = "loginSession";
+const COOKIE_DURATION = 1000 * 60 * 30;
 
 export async function POST(request: Request) {
     try {
@@ -59,8 +63,20 @@ export async function POST(request: Request) {
             console.error("Failed to update login date: ", dbUpdateError)
         }
 
-        const sessionSuccess = await createSession(user.UserID, user.Role);
-        if (sessionSuccess === null) {
+        const encryptedCookie = await encryptCookie({
+            userId: user.UserID,
+            userRole: user.Role,
+        });
+
+        const expires = new Date(Date.now() + COOKIE_DURATION);
+        
+        // store the session in cookies
+        let sessionRes = await createSession(user.UserID, user.Role);
+        if (!sessionRes) {
+            console.error("Error creating a session while sucessfully trying to log in");
+        }
+
+        if (sessionRes === null) {
             console.error("Error creating session whilst logging in");
             return NextResponse.json(
                 {error: "Login failed due to session creation error"},
@@ -68,18 +84,30 @@ export async function POST(request: Request) {
             );
         }
 
-        // store the session in cookies
-        let sessionRes = await createSession(user.UserID, user.Role);
-        if (!sessionRes) {
-            console.error("Error creating a session while sucessfully trying to log in");
-        }
-
         //Redirect the user based or their role
-        return NextResponse.json({
+        // return NextResponse.json({
+        //     message: "Login Successful",
+        //     role: user.Role,
+        //     email: user.Email,
+        // }, {status: 200});
+
+        const response = NextResponse.json({
             message: "Login Successful",
             role: user.Role,
             email: user.Email,
-        }, {status: 200});
+        });
+
+        response.cookies.set({
+            name: COOKIE_NAME,
+            value: encryptedCookie,
+            httpOnly: true,
+            secure: true,
+            sameSite: "lax",
+            expires,
+            path: "/",
+        });
+
+        return response;
 
     } catch (error) {
         console.error("Login API Error:", error);
