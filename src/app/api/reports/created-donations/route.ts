@@ -4,7 +4,7 @@ import { ReportData } from "@/app/reports/page";
 
 interface SqlResultRow {
     month: string;
-    acceptedDonations: number;
+    createdDonations: number;
 }
 
 export async function GET() {
@@ -12,11 +12,10 @@ export async function GET() {
         const db = await getDb();
 
         const sqlQuery = `SELECT
-        STRFTIME('%Y-%m', AcceptedDate) AS month,
-        COUNT(DISTINCT DonationID) AS acceptedDonations
+        STRFTIME('%Y-%m', DateTime) AS month,
+        COUNT(DISTINCT DonationID) AS createdDonations
         FROM Donation
-        WHERE AcceptedDate IS NOT NULL
-        AND Status = 'ACCEPTED'
+        WHERE DateTime IS NOT NULL
         GROUP BY month
         ORDER BY month;
         `;
@@ -25,13 +24,13 @@ export async function GET() {
 
         const reportData: ReportData = resultRows.map((row: SqlResultRow) => ({
             month: row.month,
-            acceptedDonations: row.acceptedDonations,
+            createdDonations: row.createdDonations,
         }));
 
         return NextResponse.json(reportData);
         
     } catch (error) {
         console.error("Database query failed: ", error);
-        return NextResponse.json({error: 'Failed to fetch accepted donations report'}, {status: 500});
+        return NextResponse.json({error: 'Failed to fetch created donations report'}, {status: 500});
     }
 }

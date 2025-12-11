@@ -68,6 +68,8 @@ export type ReportData = DataPoint[];
 export default function Reports() {
   const [activeUserData, setActiveUserData] = useState<ReportData>([]);
   const [acceptedDonationsData, setAcceptedDonationsData] = useState<ReportData>([]);
+  const [createdDonationsData, setCreatedDonationsData] = useState<ReportData>([]);
+
   const [isLoading, setIsLoading] = useState(true);
   const [activeReport, setActiveReport] = useState<ReportName>('activeUsers');
   
@@ -118,7 +120,40 @@ export default function Reports() {
         }
     }
     fetchActiveUsersData();
+
+    async function fetchAcceptedDonationsData() {
+          try {
+              const response = await fetch ('/api/reports/accepted-donations');
+              if (!response.ok) {
+                  throw new Error(`HTTP error! status: ${response.status}`);
+              }
+              const data: ReportData = await response.json();
+              setAcceptedDonationsData(data);
+          } catch (error) {
+              console.error("error fetching accepted donations report: ", error);
+          } finally {
+              setIsLoading(false);
+          }
+      }
+      fetchAcceptedDonationsData();
+
+      async function fetchCreatedDonationsData() {
+          try {
+              const response = await fetch ('/api/reports/created-donations');
+              if (!response.ok) {
+                  throw new Error(`HTTP error! status: ${response.status}`);
+              }
+              const data: ReportData = await response.json();
+              setCreatedDonationsData(data);
+          } catch (error) {
+              console.error("error fetching created donations report: ", error);
+          } finally {
+              setIsLoading(false);
+          }
+      }
+      fetchCreatedDonationsData();
   }, []);
+  
 
   return (
       <main>
