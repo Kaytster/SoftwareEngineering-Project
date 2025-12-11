@@ -4,17 +4,15 @@ import { Metadata } from "next";
 import { verifySession } from "../../../../lib/session";
 
 export const metadata: Metadata = {
-	title: "Dashboard | SustainWear"
-}
+  title: "Dashboard | SustainWear",
+};
 
 export default async function Dashboard() {
-	const session = await verifySession();
+  const session = await verifySession();
 
-	if (!session) {
-		return <div>
-			You must be logged in to access this page!
-		</div>
-	} else {
-		return <DonorDashboard />
-	}
+  if (!session) {
+    return <div>You must be logged in to access this page!</div>;
+  }
+
+  return <DonorDashboard donorId={session.userId} />;
 }
