@@ -5,26 +5,27 @@ import AdminNav from '@/app/components/adminNavigation';
 import ActiveUsersChart from '../components/charts/activeUsers';
 import AcceptedDonationsChart from '../components/charts/acceptedDonations';
 import CreatedDonationsChart from '../components/charts/createdDonations';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 //How many active users
 //How many accepted donations
 //How many donations created
 
-const activeUserData = [
-    {month: 'Jan', activeUsers: 10},
-    {month: 'Feb', activeUsers: 15},
-    {month: 'Mar', activeUsers: 20},
-    {month: 'Apr', activeUsers: 25},
-    {month: 'May', activeUsers: 30},
-    {month: 'Jun', activeUsers: 35},
-    {month: 'Jul', activeUsers: 20},
-    {month: 'Aug', activeUsers: 21},
-    {month: 'Sep', activeUsers: 32},
-    {month: 'Oct', activeUsers: 33},
-    {month: 'Nov', activeUsers: 30},
-    {month: 'Dec', activeUsers: 30},
-];
+// const activeUserData = [
+//     {month: 'Jan', activeUsers: 10},
+//     {month: 'Feb', activeUsers: 15},
+//     {month: 'Mar', activeUsers: 20},
+//     {month: 'Apr', activeUsers: 25},
+//     {month: 'May', activeUsers: 30},
+//     {month: 'Jun', activeUsers: 35},
+//     {month: 'Jul', activeUsers: 20},
+//     {month: 'Aug', activeUsers: 21},
+//     {month: 'Sep', activeUsers: 32},
+//     {month: 'Oct', activeUsers: 33},
+//     {month: 'Nov', activeUsers: 30},
+//     {month: 'Dec', activeUsers: 30},
+// ];
+
 const acceptedDonationsData = [
     {month: 'Jan', acceptedDonations: 10},
     {month: 'Feb', acceptedDonations: 15},
@@ -65,8 +66,10 @@ export type ReportData = DataPoint[];
 
 
 export default function Reports() {
-
+  const [activeUserData, setActiveUserData] = useState<ReportData>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [activeReport, setActiveReport] = useState<ReportName>('activeUsers');
+  
   const getTabClass = (reportName: ReportName) => {
     const isActive = activeReport === reportName;
     let classes = 'inline-block py-2 px-4 font-semibold cursor-pointer transition duration-150 ease-in-out';
@@ -79,6 +82,13 @@ export default function Reports() {
   }
 
   const renderChart = () => {
+    if (isLoading) {
+        return <div className="text-center py-20 text-lg text-gray-500">Loading Active Users Data...</div>
+    }
+    if (activeReport === 'activeUsers' && activeUserData.length === 0) {
+        return <div className="text-center py-20 text-lg text-red-500">No Active Users Data Available for this period.</div>
+    }
+
     switch (activeReport) {
         case 'activeUsers':
             return <ActiveUsersChart data={activeUserData} />;
@@ -91,6 +101,23 @@ export default function Reports() {
     }
   }
 
+  useEffect(() => {
+    async function fetchActiveUsersData() {
+        try {
+            const response = await fetch ('/api/reports/active-users');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data: ReportData = await response.json();
+            setActiveUserData(data);
+        } catch (error) {
+            console.error("error fetching active users report: ", error);
+        } finally {
+            setIsLoading(false);
+        }
+    }
+    fetchActiveUsersData();
+  }, []);
 
   return (
       <main>
