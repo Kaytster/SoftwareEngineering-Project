@@ -9,6 +9,7 @@ interface DbUser {
     Email: string;
     PasswordHash: string;
     Role: string;
+    LastLoginDate: string;
 }
 
 export async function POST(request: Request) {
@@ -56,6 +57,15 @@ export async function POST(request: Request) {
             );
         } catch (dbUpdateError) {
             console.error("Failed to update login date: ", dbUpdateError)
+        }
+
+        const sessionSuccess = await createSession(user.UserID, user.Role);
+        if (sessionSuccess === null) {
+            console.error("Error creating session whilst logging in");
+            return NextResponse.json(
+                {error: "Login failed due to session creation error"},
+                {status: 500}
+            );
         }
 
         // store the session in cookies
