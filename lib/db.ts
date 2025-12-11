@@ -10,7 +10,7 @@ export async function getDb(): Promise<Database> {
         return db;
     }
 
-    const dbPath = path.join(process.cwd(), 'db', 'sustainwear.db')
+    const dbPath = path.join(process.cwd(), 'db', 'sustainwearNEW.db')
 
     //Opening the connection
     db = await open({
