@@ -1,6 +1,12 @@
 'use client'
 import { CartesianGrid, Line, LineChart, XAxis, YAxis, Legend, Tooltip } from 'recharts';
-export default function AcceptedDonationsChart({data}) {
+import { ReportData } from '@/app/reports/page';
+
+interface AcceptedDonationsChartProps {
+    data: ReportData;
+}
+
+export default function AcceptedDonationsChart({data}: AcceptedDonationsChartProps) {
 
     return (
         <LineChart style={{width: '100%', aspectRatio: 1.618, maxWidth: 600, backgroundColor:"white", borderRadius: 20, paddingRight: 20, marginTop: 10}}

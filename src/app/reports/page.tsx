@@ -2,18 +2,95 @@
 import '@/app/globals.css'
 import Image from 'next/image';
 import AdminNav from '@/app/components/adminNavigation';
+import ActiveUsersChart from '../components/charts/activeUsers';
+import AcceptedDonationsChart from '../components/charts/acceptedDonations';
+import CreatedDonationsChart from '../components/charts/createdDonations';
 import { useState } from 'react';
 
 //How many active users
 //How many accepted donations
 //How many donations created
 
+const activeUserData = [
+    {month: 'Jan', activeUsers: 10},
+    {month: 'Feb', activeUsers: 15},
+    {month: 'Mar', activeUsers: 20},
+    {month: 'Apr', activeUsers: 25},
+    {month: 'May', activeUsers: 30},
+    {month: 'Jun', activeUsers: 35},
+    {month: 'Jul', activeUsers: 20},
+    {month: 'Aug', activeUsers: 21},
+    {month: 'Sep', activeUsers: 32},
+    {month: 'Oct', activeUsers: 33},
+    {month: 'Nov', activeUsers: 30},
+    {month: 'Dec', activeUsers: 30},
+];
+const acceptedDonationsData = [
+    {month: 'Jan', acceptedDonations: 10},
+    {month: 'Feb', acceptedDonations: 15},
+    {month: 'Mar', acceptedDonations: 20},
+    {month: 'Apr', acceptedDonations: 25},
+    {month: 'May', acceptedDonations: 30},
+    {month: 'Jun', acceptedDonations: 50},
+    {month: 'Jul', acceptedDonations: 20},
+    {month: 'Aug', acceptedDonations: 21},
+    {month: 'Sep', acceptedDonations: 32},
+    {month: 'Oct', acceptedDonations: 33},
+    {month: 'Nov', acceptedDonations: 30},
+    {month: 'Dec', acceptedDonations: 30},
+];
+const createdDonationsData = [
+    {month: 'Jan', createdDonations: 10},
+    {month: 'Feb', createdDonations: 15},
+    {month: 'Mar', createdDonations: 20},
+    {month: 'Apr', createdDonations: 25},
+    {month: 'May', createdDonations: 30},
+    {month: 'Jun', createdDonations: 35},
+    {month: 'Jul', createdDonations: 20},
+    {month: 'Aug', createdDonations: 50},
+    {month: 'Sep', createdDonations: 32},
+    {month: 'Oct', createdDonations: 33},
+    {month: 'Nov', createdDonations: 30},
+    {month: 'Dec', createdDonations: 30},
+];
+
+export type ReportName = 'activeUsers' | 'acceptedDonations' | 'createdDonations';
+export type DataPoint = {
+    month: string;
+    activeUsers?: number;
+    acceptedDonations?: number;
+    createdDonations?: number;
+}
+export type ReportData = DataPoint[];
+
+
 export default function Reports() {
 
-    const [activeReport, setActiveReport] = useState('activeUsers');
-    const activeUserData = [
-        {}
-    ]
+  const [activeReport, setActiveReport] = useState<ReportName>('activeUsers');
+  const getTabClass = (reportName: ReportName) => {
+    const isActive = activeReport === reportName;
+    let classes = 'inline-block py-2 px-4 font-semibold cursor-pointer transition duration-150 ease-in-out';
+    if (isActive) {
+        classes += 'bg-white border-l border-t border-r rounded-t text-blue-700';
+    } else {
+        classes += 'bg-white text-blue-500 hover:text-blue-800';
+    }
+    return classes;
+  }
+
+  const renderChart = () => {
+    switch (activeReport) {
+        case 'activeUsers':
+            return <ActiveUsersChart data={activeUserData} />;
+        case 'acceptedDonations':
+            return <AcceptedDonationsChart data={acceptedDonationsData} />;
+        case 'createdDonations':
+            return <CreatedDonationsChart data={createdDonationsData} />;
+        default:
+            return <ActiveUsersChart data={activeUserData} />;
+    }
+  }
+
 
   return (
       <main>
@@ -28,16 +105,25 @@ export default function Reports() {
                     <div>
                         <ul className='flex border-b'>
                             <li className='-mb-px  mr-1'>
-                                <a className='bg-white inline-block border-l border-t border-r rounded-t py-2 px-4 text-blue-700 font-semibold' href='#'>Tab 1</a>
+                                <a className={getTabClass('activeUsers')} 
+                                   onClick={() => setActiveReport('activeUsers')}>
+                                    Tab 1
+                                </a>
                             </li>
                             <li className='mr-1'>
-                                <a className='bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold' href='#'>Tab 2</a>
+                                <a className={getTabClass('acceptedDonations')} 
+                                   onClick={() => setActiveReport('acceptedDonations')}>
+                                    Tab 2
+                                </a>
                             </li>
                             <li className='mr-1'>
-                                <a className='bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold' href='#'>Tab 3</a>
+                                <a className={getTabClass('createdDonations')} 
+                                   onClick={() => setActiveReport('createdDonations')}>
+                                    Tab 3
+                                </a>
                             </li>
                         </ul>
-                        
+                        {renderChart()}
                     </div>
                 </div>
             </div> 
