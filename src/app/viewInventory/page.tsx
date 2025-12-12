@@ -60,7 +60,7 @@ export default function DisplayInventory() {
                         <td className="p-3 border donorid-col">{d.DonationID}</td>
                         <td className="px-8 py-10 border">
                             <Image
-                                src={`/uploads/${d.ServerName}`}
+                                src={`/images/${d.ServerName}`}
                                 width={140}
                                 height={150}
                                 alt="Donation Image"
