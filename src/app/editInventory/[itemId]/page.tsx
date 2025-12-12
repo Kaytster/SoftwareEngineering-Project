@@ -101,7 +101,7 @@ export default function EditInventory() {
     }
 
     try {
-        const response = await fetch('/api/edit-inventory', {
+        const response = await fetch(`/api/edit-inventory/${itemId}`, {
             method: 'PUT',
             //headers: {'Content-Type': 'application/json'},
             body: formDataPayload,
@@ -314,12 +314,12 @@ export default function EditInventory() {
                                         </p>
                                     )}
                                 </div>
-                            </form>
-                        </div>
                         <button type='submit' disabled={submitting} className={`mt-4 w-1/2 bg-[#729458] hover:bg-[#B6D99B] text-white font-bold py-2 px-4 rounded-full transition-colors 
                     ${submitting ? 'opacity-50 cursor-not-allowed' : ''}`}>
                             Submit
                         </button>
+                            </form>
+                        </div>
                     </div>
                 {/* Col 3 */}
                 
