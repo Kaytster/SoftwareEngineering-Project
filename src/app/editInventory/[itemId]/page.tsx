@@ -30,6 +30,7 @@ export default function EditInventory() {
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
   const [formData, setFormData] = useState({
     category: '',
@@ -124,11 +125,24 @@ export default function EditInventory() {
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
-        setSelectedFile(e.target.files[0]);
+        const file = e.target.files[0];
+        setSelectedFile(file);
+
+        const url = URL.createObjectURL(file);
+        setPreviewUrl(url);
     } else {
         setSelectedFile(null);
+        setPreviewUrl(null)
     }
   };
+
+  useEffect(() => {
+    return () => {
+        if (previewUrl) {
+            URL.revokeObjectURL(previewUrl);
+        }
+    };
+  }, [previewUrl]);
 
   if (loading) {
         return <main className="flex justify-center items-center min-h-screen">Loading item data...</main>;
@@ -190,9 +204,9 @@ export default function EditInventory() {
                 <div className="w-1/3 flex  flex-col justify-center items-center">
                     {/* Item Image*/}
                     <Image 
-                    src={`/images/${item.currentImageServerName}`}
-                    alt={`${item.Category} image`}
-                    width={200} 
+                    src={previewUrl || `/images/${item.currentImageServerName}`}
+                    alt={selectedFile ? `New ${item.Category} image preview` : `${item.Category} image`}
+                    width={500} 
                     height={300} 
                     className="mr-1 inline-block w-70  h-130 rounded-md " 
                 />
@@ -315,34 +329,3 @@ export default function EditInventory() {
     </main>
   )
 }
-
-
-{/* Col 3: Actions (e.g., Delete) */}
-//             <div className="w-1/3 flex flex-col items-center">
-//               <div className="relative w-full bg-[#9CB7C8] rounded-md flex flex-col items-center p-4"> 
-//                 <div className='inline-block rounded-md bg-[#729458] text-white text-2xl px-3 mb-4'>
-//                   Actions
-//                 </div>
-                
-//                 {/* Separate form or logic for Delete */}
-//                 <div className="flex items-center space-x-2 mb-4">
-//                   <input id="delete-checkbox" type="checkbox" className="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded" />
-//                   <label htmlFor="delete-checkbox" className="text-sm font-medium text-red-900">Mark for Deletion</label>
-//                 </div>
-                
-//                 {/* The tags and description inputs were redundant here based on your screenshot; 
-//                     I'm removing them and leaving the Delete action logic. 
-//                 */}
-//               </div>
-              
-//               {/* Secondary Submit Button (Can be for Delete, or just linked to the primary form if only one action) */}
-//               <button className="mt-4 w-1/2 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
-//                 Delete Item
-//               </button>
-//             </div>
-            
-//           </div>
-//         </div>  
-//       </div>
-//     </main>
-//   );

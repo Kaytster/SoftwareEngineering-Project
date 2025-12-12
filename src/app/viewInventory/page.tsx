@@ -92,3 +92,4 @@ export default function DisplayInventory() {
 
     );
 }
+//<a href="https://www.freepik.com/free-photo/men-rsquo-s-black-short-sleeve-shirt-casual-apparel_15850029.htm#fromView=search&page=1&position=13&uuid=8653d58e-f660-4a5d-ac7d-66f276311d67&query=shirt">Image by rawpixel.com on Freepik</a>
