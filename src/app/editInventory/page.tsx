@@ -1,6 +1,5 @@
 import '../globals.css'
 import Image from 'next/image';
-import sampleImage from '../components/icons/sampleIMG.jpg';
 import CharityNav from '../components/charityNavigation';
 
 
@@ -18,7 +17,7 @@ export default function EditInventory() {
                 <div className="w-1/3 flex  flex-col justify-center items-center">
                     {/* Profile Picture */}
                     <Image 
-                    src={sampleImage} 
+                    src='/images/sampleIMG.jpg'
                     alt="Account" 
                     width={20} 
                     height={20} 

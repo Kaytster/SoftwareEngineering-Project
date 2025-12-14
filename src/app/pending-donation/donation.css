@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+thead{
+    background-color:#376482;
+    color:white;
+    font-size: 18px;
+}
+
+td{
+    background-color:#ffffff;
+    border-color: #c7c2c2;
+}
+
+.status-colour{
+    background-color: #daeaf1;
+}
+
+.donorid-header{
+    background-color: #536d3f;;
+}
+
+.donorid-col{
+    background-color: #e7e9e6;
+    border: 1px solid #9d9b9b;
+}

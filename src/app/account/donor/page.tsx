@@ -1,10 +1,15 @@
 import '@/app/globals.css'
 import Image from 'next/image';
+<<<<<<< HEAD
 // import sampleImage from '@/app/components/icons/sampleIMG.jpg';
 import DonorNav from '@/app/components/donorNavigation';
 
 
 
+=======
+import sampleImage from '@/app/components/icons/pfp-icon-temp.png';
+import DonorNav from '@/app/components/donorNavigation';
+>>>>>>> fec1aa38f946e2942e15b01890b1b6ca7b59359e
 export default function DonorAccount() {
   return (
     <main>
