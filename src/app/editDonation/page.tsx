@@ -1,6 +1,5 @@
 import '../globals.css'
 import Image from 'next/image';
-//import sampleImage from '../components/icons/sampleIMG.jpg';
 import DonorNav from "../components/donorNavigation";
 
 
@@ -17,8 +16,8 @@ export default function EditDonation() {
             <div className="flex space-x-6 h-full">
                 <div className="w-1/2 flex  flex-col justify-center items-center">
                     {/* Profile Picture */}
-                    {/* <Image 
-                    src={sampleImage} 
+                    <Image 
+                    src='/images/sampleIMG.jpg' 
                     alt="Account" 
                     width={20} 
                     height={20} 

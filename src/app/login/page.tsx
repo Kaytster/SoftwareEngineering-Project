@@ -1,18 +1,32 @@
 "use client";
+import { useRouter } from 'next/navigation'
 import { useState } from "react";
 import '../globals.css'
 import Image from 'next/image';
 import LandingNav from '../components/landingNavigation';
 
+export default function LoginPage() {
+  const router = useRouter();
+        const backButton = () => {
+            router.push('/')
+        }
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  
+  
+  async function handleLogin(e: React.FormEvent) {
+    e.preventDefault();
+    setError(""); // reset error
 
 
 export default function Login() {
   return (
   <main>
-    {/* NAV BAR */}
-    <header> 
-        <LandingNav />
-    </header>
+    <button className="absolute top-4 left-4 bg-[#729458] hover:bg-[#B6D99B] text-[#0C0C0C] font-bold py-2 px-4 rounded-full" onClick={backButton}>
+            Back
+    </button>
 
       <div className="flex justify-center mx-auto mt-20">
         <div className="relative mx-auto bg-[#9CB7C8] rounded-md flex flex-col items-center p-8 w-full max-w-2xl">

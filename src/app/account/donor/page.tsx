@@ -1,10 +1,7 @@
 import '@/app/globals.css'
 import Image from 'next/image';
-import sampleImage from '@/app/components/icons/sampleIMG.jpg';
+import sampleImage from '@/app/components/icons/pfp-icon-temp.png';
 import DonorNav from '@/app/components/donorNavigation';
-
-
-
 export default function DonorAccount() {
   return (
     <main>
