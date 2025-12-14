@@ -6,23 +6,71 @@ import '@/app/globals.css'
 import Image from 'next/image';
 import Head from 'next/head';
 
-type AlertType = 'Success' | 'Error' | 'Warning';
+type AlertType = 'SuccessfulDonation' | 'UnsuccessfulDonation' | 'DonationAccept' | 'DonationReject' |
+                 'SuccessfulEdit' | 'UnsuccessfulEdit' | 'SuccessfulDelete' | 'UnsuccessfulDelete' |
+                 'SuccessfulEditAcc' | 'UnsuccessfulEditAcc';
 
 const getTypeStyles = (type: AlertType, currentType: AlertType) => {
     const isSelected = type === currentType;
-    let base = "px-4 py-2 font-bold transition duration-300 rounded-lg text-white";
+    let base = "px-4 py-2 font-bold transition duration-300 rounded-lg text-white bg-[var(--primary)]";
 
-    if (type === 'Success') base += isSelected ? 'bg-green-600 shadow-lg' : 'bg-green-500 hover:bg-green-600';
-    if (type === 'Error') base += isSelected ? 'bg-red-600 shadow-lg' : 'bg-red-500 hover:bg-red-600';
-    if (type === 'Warning') base += isSelected ? 'bg-orange-600 shadow-lg' : 'bg-orange-500 hover:bg-orange-600';
+    let colourClasses ='';
+    const successAlerts = ['SuccessfulDonation', 'DonationAccept', 'SuccessfulEdit', 
+                          'SuccessfulDelete', 'SuccessfulEditAcc'];
+    const unsuccessfulAlerts = ['UnsuccessfulDonation', 'DonationReject', 'UnsuccessfulEdit', 
+                                'UnsuccessfulDelete', 'UnsuccessfulEditAcc'];
 
-    return base;
+    if (isSelected) {
+        if (successAlerts.includes(type)) {
+            colourClasses = 'bg-green-500 hover:bg-green-600';
+    } else if (unsuccessfulAlerts.includes(type)) {
+        colourClasses = 'bg-red-500 hover:bg-red-600';
+    } else {
+        colourClasses = ' bg-[var(--primary)]';
+    }
+} else {
+    colourClasses = ' bg-[var(--primary)]';
+    if (successAlerts.includes(type)) {
+            colourClasses += ' hover:bg-green-400 hover:shadow-md';
+        } else if (unsuccessfulAlerts.includes(type)) {
+            colourClasses += ' hover:bg-red-400 hover:shadow-md';
+        } else {
+            colourClasses = ' bg-[var(--primary)]';
+        }
+    
+}
+    
+    return base + colourClasses;
+
+    // if (type === 'SuccessfulDonation') base += isSelected ? 'bg-green-600 shadow-lg' : 'bg-green-500 hover:bg-green-600';
+    // if (type === 'UnsuccessfulDonation') base += isSelected ? 'bg-red-600 shadow-lg' : 'bg-red-500 hover:bg-red-600';
+    // if (type === 'DonationAccept') base += isSelected ? 'bg-orange-600 shadow-lg' : 'bg-orange-500 hover:bg-orange-600';
+    // if (type === 'DonationReject') base += isSelected ? 'bg-green-600 shadow-lg' : 'bg-green-500 hover:bg-green-600';
+    // if (type === 'SuccessfulEdit') base += isSelected ? 'bg-red-600 shadow-lg' : 'bg-red-500 hover:bg-red-600';
+    // if (type === 'UnsuccessfulEdit') base += isSelected ? 'bg-orange-600 shadow-lg' : 'bg-orange-500 hover:bg-orange-600';
+    // if (type === 'SuccessfulDelete') base += isSelected ? 'bg-green-600 shadow-lg' : 'bg-green-500 hover:bg-green-600';
+    // if (type === 'UnsuccessfulDelete') base += isSelected ? 'bg-red-600 shadow-lg' : 'bg-red-500 hover:bg-red-600';
+    // if (type === 'SuccessfulEditAcc') base += isSelected ? 'bg-orange-600 shadow-lg' : 'bg-orange-500 hover:bg-orange-600';
+    // if (type === 'UnsuccessfulEditAcc') base += isSelected ? 'bg-green-600 shadow-lg' : 'bg-green-500 hover:bg-green-600';
+
+    //return base;
+}
+
+const formatAlertType = (type: AlertType) => {
+    return type.replace(/([A-Z])/g, ' $1').trim();
 }
 
 export default function Notifications() {
     const {showAlert, getMessages, updateMessage} = useAlert();
-    const [selectedType, setSelectedType] = useState<AlertType>('Success');
+    const [selectedType, setSelectedType] = useState<AlertType>('SuccessfulDonation');
     const [currentMessage, setCurrentMessage] = useState<string>('');
+
+    const allAlertTypes: AlertType[] = [
+        'SuccessfulDonation', 'UnsuccessfulDonation', 'DonationAccept',
+        'DonationReject', 'SuccessfulEdit', 'UnsuccessfulEdit',
+        'SuccessfulDelete', 'UnsuccessfulDelete', 'SuccessfulEditAcc',
+        'UnsuccessfulEditAcc' 
+    ];
 
     useEffect(() => {
         const messages = getMessages();
@@ -52,14 +100,17 @@ export default function Notifications() {
                         Customize Alerts
                     </h2>
                     <div className='flex space-x-4 mb-8'>
-                        {['Success', 'Error', 'Warning'].map((type) => (
-                            <button className={getTypeStyles(type as AlertType, selectedType)}
+                        <div className='grid grid-cols-3 gap-3 mb-3'>
+                            {allAlertTypes.slice(0, 9).map((type) => (
+                                <button 
+                                    className={getTypeStyles(type, selectedType)}
                                     key={type}
-                                    onClick={() => setSelectedType(type as AlertType)}
-                            >
-                                {type} Alert
-                            </button>
-                        ))}
+                                    onClick={() => setSelectedType(type)}
+                                >
+                                    {formatAlertType(type)} Alert
+                                </button>
+                            ))}
+                        </div>
                     </div>
                 </div>
                 {/* col2 */}
@@ -88,7 +139,7 @@ export default function Notifications() {
                             <button className='mt-6 px-6 py-2 bg-[var(--secondary)] text-white rounded-md font-bold hover:opacity-90 transition'
                                 onClick={handleSave}
                         >
-                            Save New {selectedType} Message
+                            Save New Message
                         </button>
                         </div>
                     </div>
