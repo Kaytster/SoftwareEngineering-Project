@@ -1,56 +1,97 @@
+"use client";
+
 import Card from "@/app/components/Card";
 import StatusPill from "@/app/components/StatusPill";
 import Image from "next/image";
 import DonorNav from "@/app/components/donorNavigation";
+import { useEffect, useState } from "react";
+import { IDonation } from "@/app/api/getDonorLastMonthDonations/[userId]/route";
 
-export default function DonorDashboard() {
+export default function DonorDashboard({ donorId }: { donorId: string }) {
+  const [status, setStatus] = useState("fetch");
+  const [mostRecentDonation, setMostRecentDonation] =
+    useState<IDonation | null>(null);
+
+  useEffect(() => {
+    fetch(`/api/getDonorLastMonthDonations/${donorId}`)
+      .then((res) => res.json())
+      .then(({ data }: { data: IDonation[] }) => {
+        setStatus("success");
+        setMostRecentDonation(data.length > 0 ? data[0] : null);
+      })
+      .catch((err) => {
+        setStatus("error");
+        console.error(`Error while fetching donations:
+        ${err}`);
+      });
+  }, []);
+
   return (
-  <main>
-    <header>
-      <DonorNav />
-    </header>
-    <div className="flex justify-around">
-      <Card title="Recent Donation">
-        <StatusPill status="success">Donation accepted</StatusPill>
-        <StatusPill status="warning">Waiting for review</StatusPill>
-        <StatusPill status="error">Donation rejected</StatusPill>
+    <main>
+      <header>
+        <DonorNav />
+      </header>
 
-        <div className="aspect-3/2 overflow-hidden">
-          <Image
-            src="/images/jacket-1.jpeg"
-            alt="Old Jacket"
-            width={500}
-            height={700}
-            className="block"
-          />
-        </div>
+      <div className="flex justify-around mt-8">
+        <Card title="Recent Donation">
+          {status === "fetch" && (
+            <StatusPill status="skeleton">Loading donations...</StatusPill>
+          )}
+          {status === "error" && (
+            <StatusPill status="error">
+              Failed to retrieve your donations.
+            </StatusPill>
+          )}
 
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti
-          magnam, non illum eaque quas neque ipsa qui eum laudantium est, quo
-          voluptates fugit ullam saepe, nihil ipsum quos dolor modi!
-        </p>
-      </Card>
-      <Card title="Recent Statistics">
-        <div
-          className="aspect-1/1 bg-gray-300 rounded-full flex justify-center items-center"
-          style={{
-            backgroundImage:
-              "conic-gradient(#729458 0, #729458 120deg, #44403b 120deg, #44403b 0)"
-          }}
-        >
+          {status === "success" && mostRecentDonation !== null ? (
+            <>
+              <StatusPill
+                status={
+                  mostRecentDonation.Status === "ACCEPTED"
+                    ? "success"
+                    : mostRecentDonation.Status === "REJECTED"
+                      ? "error"
+                      : "warning"
+                }
+              >
+                {mostRecentDonation.Status}
+              </StatusPill>
+              <div className="aspect-3/2 overflow-hidden">
+                <Image
+                  src={`/uploads/${mostRecentDonation.ImageID}`}
+                  alt=""
+                  width={500}
+                  height={700}
+                  className="block"
+                />
+              </div>
+            </>
+          ) : (
+            <StatusPill status="warning">
+              You do not have any recent donations.
+            </StatusPill>
+          )}
+        </Card>
+        <Card title="Recent Statistics">
           <div
-            className="aspect-1/1 rounded-full bg-secondary flex justify-center items-center text-4xl font-bold"
-            style={{ width: "calc(100% - 3rem)" }}
+            className="aspect-1/1 bg-gray-300 rounded-full flex justify-center items-center"
+            style={{
+              backgroundImage:
+                "conic-gradient(#729458 0, #729458 120deg, #44403b 120deg, #44403b 0)",
+            }}
           >
-            10 kg
+            <div
+              className="aspect-1/1 rounded-full bg-secondary flex justify-center items-center text-4xl font-bold"
+              style={{ width: "calc(100% - 3rem)" }}
+            >
+              10 kg
+            </div>
           </div>
-        </div>
-        <p className="text-center text-xl">
-          CO<sub>2</sub> saved this month
-        </p>
-      </Card>
-    </div>
-  </main>
+          <p className="text-center text-xl">
+            CO<sub>2</sub> saved this month
+          </p>
+        </Card>
+      </div>
+    </main>
   );
 }

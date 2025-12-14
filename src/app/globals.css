@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #FFF6e3;
-  --foreground: #0C0C0C;
-  --primary: #9CB7C8; /*powderBlue*/
-  --primaryLight: #dcebf5; /*aliceBlue*/
-  --secondary: #729458; /*sageGreen*/
+  --background: #fff6e3;
+  --foreground: #171717;
+  --color-primary: #729458;
+  --color-secondary: #9cb7c8;
+  --color-light-secondary: #dbebf4;
+  --color-paper: #fff6e3;
 }
 
 @theme inline {
@@ -14,8 +15,7 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
-n
-.text-primary {
+n .text-primary {
   color: var(--color-primary);
 }
 .bg-primary {
@@ -47,28 +47,21 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Alert CSS */
-@keyframes slideInOut {
-  0% {
-    right: -500px;
-    opacity: 1;
-  }
-  10% {
-    right: 20px;
-    opacity: 1;
-  }
-  90% {
-    right: 20px;
-    opacity: 1;
-  }
-  100% {
-    right: -500px;
-    opacity: 1;
-  }
+th {
+  text-align: start;
 }
-.alert-box {
-  position: fixed;
-  top: 50px;
-  right: -500px;
-  animation: slideInOut 4s ease-in-out forwards;
+
+.users-table th:not(:first-of-type),
+.users-table td:not(:first-of-type) {
+  padding-left: 0.5rem;
+}
+
+.users-table th:not(:last-of-type),
+.users-table td:not(:last-of-type) {
+  padding-right: 0.5rem;
+}
+
+.users-table th,
+.users-table td {
+  white-space: nowrap;
 }
