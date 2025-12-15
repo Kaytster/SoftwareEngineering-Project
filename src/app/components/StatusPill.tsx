@@ -2,9 +2,11 @@ import { ReactNode } from "react";
 
 export default function StatusPill({
   status,
+  className = "",
   children,
 }: {
   status: "success" | "warning" | "error" | "skeleton";
+  className?: string;
   children: ReactNode;
 }) {
   let bgColor = "bg-stone-300";
@@ -22,6 +24,6 @@ export default function StatusPill({
   }
 
   return (
-    <div className={`rounded-full text-center p-1 ${bgColor}`}>{children}</div>
+    <div className={`rounded-full text-center p-1 ${bgColor} ${className}`}>{children}</div>
   );
 }

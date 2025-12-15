@@ -17,13 +17,19 @@ export default function DonorDashboard({ donorId }: { donorId: string }) {
       .then((res) => res.json())
       .then(({ data }: { data: IDonation[] }) => {
         setStatus("success");
-        setMostRecentDonation(data.length > 0 ? data[0] : null);
+        // Still in wrong order for some reason
+        // So just grab the last one then
+        setMostRecentDonation(data.length > 0 ? data[data.length - 1] : null);
+
+        console.log(data)
       })
       .catch((err) => {
         setStatus("error");
         console.error(`Error while fetching donations:
         ${err}`);
       });
+
+
   }, []);
 
   return (
@@ -56,15 +62,18 @@ export default function DonorDashboard({ donorId }: { donorId: string }) {
               >
                 {mostRecentDonation.Status}
               </StatusPill>
-              <div className="aspect-3/2 overflow-hidden">
-                <Image
-                  src={`/uploads/${mostRecentDonation.ImageID}`}
+              <div className="overflow-hidden relative">
+                <img
+                  src={`/uploads/${mostRecentDonation.ServerName}`}
                   alt=""
-                  width={500}
-                  height={700}
+                  // layout="fill"
+                  // objectFit="contain"
+                  // width={500}
+                  // height={700}
                   className="block"
                 />
               </div>
+              <p>Date of donation: {mostRecentDonation.DateTime}</p>
             </>
           ) : (
             <StatusPill status="warning">
