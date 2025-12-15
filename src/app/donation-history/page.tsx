@@ -1,3 +1,6 @@
+"use client"
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import '../globals.css'
 import DonorNav from '../components/donorNavigation';
 import Image from 'next/image';
@@ -5,6 +8,19 @@ import X from '../components/icons/X-image.png';
 import sampleImg from '../components/icons/sampleIMG.jpg';
 import ItemListed from '../components/item-listed';
 export default function DonationHistory() {
+    const router = useRouter();
+
+    const [donations, setDonations] = useState([]);
+
+    useEffect(() => {
+        async function loadData() {
+            const res = await fetch("/api/donation-history");
+            const data = await res.json();
+            setDonations(data);
+        }
+        loadData();
+    }, []);
+
     return (
     <main>
         <header>
