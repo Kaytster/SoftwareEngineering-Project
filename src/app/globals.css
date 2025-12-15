@@ -1,20 +1,12 @@
 @import "tailwindcss";
 
 :root {
-<<<<<<< HEAD
   --background: #FFF6e3;
   --foreground: #0C0C0C;
   --primary: #9CB7C8; /*powderBlue*/
   --primaryLight: #dcebf5; /*aliceBlue*/
   --secondary: #729458; /*sageGreen*/
-=======
-  --background: #fff6e3;
-  --foreground: #171717;
-  --color-primary: #729458;
-  --color-secondary: #9cb7c8;
-  --color-light-secondary: #dbebf4;
-  --color-paper: #fff6e3;
->>>>>>> fec1aa38f946e2942e15b01890b1b6ca7b59359e
+
 }
 
 @theme inline {
@@ -55,7 +47,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-<<<<<<< HEAD
+
 /* Alert CSS */
 @keyframes slideInOut {
   0% {
@@ -81,7 +73,7 @@ body {
   right: -500px;
   animation: slideInOut 4s ease-in-out forwards;
 }
-=======
+
 th {
   text-align: start;
 }
@@ -100,4 +92,4 @@ th {
 .users-table td {
   white-space: nowrap;
 }
->>>>>>> fec1aa38f946e2942e15b01890b1b6ca7b59359e
+
