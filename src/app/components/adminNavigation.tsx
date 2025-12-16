@@ -4,14 +4,18 @@
 // <a href="https://www.flaticon.com/free-icons/profile" title="profile icons">Profile icons created by Freepik - Flaticon</a>
 "use client"
 import Image from "next/image"
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import homeIcon from './icons/home.png';
 import donateIcon from './icons/donate.png';
 import inventoryIcon from './icons/inventory.png'
 import statIcon from './icons/graph.png';
 import accountIcon from './icons/avatar.png';
+import logoutIcon from "./icons/logout.png";
 import Link from "next/link";
+import { deleteSession } from "../../../lib/session";
+
 export default function AdminNav() {
+  const router = useRouter();
   const currentPath = usePathname();
   const links = [
     {href: '/dashboard/admin', label: 'Home', icon: homeIcon, path: '/dashboard/admin'},
@@ -29,8 +33,16 @@ export default function AdminNav() {
     }
     return linkItems;
   };
+
+  function handleLogOut(e: React.MouseEvent<HTMLButtonElement>): void {
+    deleteSession().then(() => {
+        router.push("/login");
+      }
+    );
+  }
+
   return (
-        <ul className="flex justify-around bg-[#9CB7C8]">
+        <ul className="flex justify-around bg-[#9CB7C8] py-2">
               {links.map((link) => (
                 <li key={link.path} className="mr-3">
                   <a className={getLinks(link.path)} href={link.href}>
@@ -45,6 +57,16 @@ export default function AdminNav() {
                   </a>
                 </li>
               ))}
+              <button onClick={handleLogOut} className="cursor-pointer hover:bg-[#3E592A] rounded-full py-2 px-4 text-[#0C0C0C]">
+                <Image
+                  src={logoutIcon}
+                  alt="Logout icon"
+                  width={20}
+                  height={20}
+                  className="mr-1 inline-block"
+                />
+                Log out
+              </button>
             </ul>
   );
 }

@@ -85,6 +85,10 @@ th {
   text-align: start;
 }
 
+.users-table {
+  min-width: 100%;
+}
+
 .users-table th:not(:first-of-type),
 .users-table td:not(:first-of-type) {
   padding-left: 0.5rem;

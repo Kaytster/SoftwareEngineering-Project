@@ -1,12 +1,7 @@
 "use client"
 import '../globals.css'
 import { useRouter } from 'next/navigation'
-<<<<<<< HEAD
-
-
-=======
 import { useState } from 'react';
->>>>>>> fec1aa38f946e2942e15b01890b1b6ca7b59359e
 
 export default function SignUp() {
     const router = useRouter();
