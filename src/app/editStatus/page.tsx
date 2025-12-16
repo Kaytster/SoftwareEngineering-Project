@@ -8,7 +8,7 @@ import "../globals.css";
 export default function EditDonationStatus() {
     const router = useRouter();
     const backButton = () => {
-      router.push('/pending-donation')
+      router.push('/pendingDonation')
     }
     const searchParams = useSearchParams();
     const donationId = searchParams.get("donationId");
@@ -21,7 +21,7 @@ export default function EditDonationStatus() {
     useEffect(() => {
         async function fetchDonation() {
         try {
-            const res = await fetch(`/api/edit-status?donationId=${donationId}`);
+            const res = await fetch(`/api/editStatus?donationId=${donationId}`);
             const data = await res.json();
             setStatus(data.Status);
         } 
@@ -41,7 +41,7 @@ export default function EditDonationStatus() {
         if (!confirmed) return; // stop if user cancels
 
         try {
-            const res = await fetch(`/api/edit-status?donationId=${donationId}`, {
+            const res = await fetch(`/api/editStatus?donationId=${donationId}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ Status: status }),
@@ -50,7 +50,7 @@ export default function EditDonationStatus() {
 
         if (res.ok) {
             alert("Status updated successfully!");
-            router.push("/pending-donation");  
+            router.push("/pendingDonation");  
         } 
         else {
             setMessage("Failed to update status.");

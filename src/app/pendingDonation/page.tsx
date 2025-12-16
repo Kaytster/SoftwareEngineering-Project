@@ -1,22 +1,41 @@
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import AdminNav from "../components/charityNavigation";
 import "../globals.css";
-import "../pending-donation/donation.css";
+import "./donation.css";
 
-export default function DisplayInventory() {
-    const [donations, setDonations] = useState([]);
+interface Donation {
+    DonationID: string;
+    ServerName: string;
+    Description: string;
+    ClothingSize: string;
+    Brand: string;
+    Colour: string;
+    DonorName: string;
+    DateTime: string;
+    Status: string;
+}
+
+export default function DisplayDonations() {
+    const [donations, setDonations] = useState<Donation[]>([]);
+    const router = useRouter();
 
     // Load donations on page load
     useEffect(() => {
         async function loadData() {
-        const res = await fetch("/api/view-inventory");
+        const res = await fetch("/api/pendingDonations");
         const data = await res.json();
         setDonations(data);
         }
         loadData();
     }, []);
+
+    const handleEditStatus = (donationId: string) => {
+    // Redirect to the edit status page with the donation ID
+        router.push(`../editStatus?donationId=${donationId}`);
+    };
 
     return (
     <main>
@@ -27,7 +46,7 @@ export default function DisplayInventory() {
         <div className="flex flex-col items-center p-4 mt-8">
             <div className="mb-6">
                 <div className="inline-block rounded-md bg-[#729458] text-white text-[26px] px-5 py-2">
-                    View Inventory
+                    Pending Donations
                 </div>
             </div>
 
@@ -49,7 +68,7 @@ export default function DisplayInventory() {
                 </thead>
 
                 <tbody>
-                    {donations.map((d: any) => (
+                    {donations.map((d) => (
                     <tr key={d.DonationID} className="text-center">
                         <td className="p-3 border donorid-col">{d.DonationID}</td>
                         <td className="px-8 py-10 border">
@@ -67,10 +86,11 @@ export default function DisplayInventory() {
                         <td className="p-3 border">{d.Colour}</td>
                         <td className="p-3 border">{d.DonorName}</td>
                         <td className="p-3 border">{d.DateTime}</td>
-                        <td className="p-3 border">{d.Status}</td>
+                        <td className="p-3 status-colour border">{d.Status}</td>
                         <td className="p-3 border">
-                            <button className="bg-[#729458] text-[18px] text-white px-4 py-2 rounded-full hover:bg-[#B6D99B] cursor-pointer">
-                                Edit
+                            <button className="bg-[#729458] text-[18px] text-white px-4 py-2 rounded-full hover:bg-[#B6D99B]
+                             cursor-pointer" onClick={() => handleEditStatus(d.DonationID)}>
+                                Edit status
                             </button>
                         </td>
                     </tr>

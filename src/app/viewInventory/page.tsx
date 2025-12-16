@@ -1,29 +1,24 @@
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import AdminNav from "../components/charityNavigation";
 import "../globals.css";
-import "./donation.css";
+import "../pendingDonation/donation.css";
 
-export default function DisplayDonations() {
+
+
+export default function DisplayInventory() {
     const [donations, setDonations] = useState([]);
-    const router = useRouter();
 
     // Load donations on page load
     useEffect(() => {
         async function loadData() {
-        const res = await fetch("/api/pending-donations");
+        const res = await fetch("/api/viewInventory");
         const data = await res.json();
         setDonations(data);
         }
         loadData();
     }, []);
-
-    const handleEditStatus = (donationId: string) => {
-    // Redirect to the edit status page with the donation ID
-        router.push(`../edit-status?donationId=${donationId}`);
-    };
 
     return (
     <main>
@@ -34,7 +29,7 @@ export default function DisplayDonations() {
         <div className="flex flex-col items-center p-4 mt-8">
             <div className="mb-6">
                 <div className="inline-block rounded-md bg-[#729458] text-white text-[26px] px-5 py-2">
-                    Pending Donations
+                    View Inventory
                 </div>
             </div>
 
@@ -74,11 +69,10 @@ export default function DisplayDonations() {
                         <td className="p-3 border">{d.Colour}</td>
                         <td className="p-3 border">{d.DonorName}</td>
                         <td className="p-3 border">{d.DateTime}</td>
-                        <td className="p-3 status-colour border">{d.Status}</td>
+                        <td className="p-3 border">{d.Status}</td>
                         <td className="p-3 border">
-                            <button className="bg-[#729458] text-[18px] text-white px-4 py-2 rounded-full hover:bg-[#B6D99B]
-                             cursor-pointer" onClick={() => handleEditStatus(d.DonationID)}>
-                                Edit status
+                            <button className="bg-[#729458] text-[18px] text-white px-4 py-2 rounded-full hover:bg-[#B6D99B] cursor-pointer">
+                                Edit
                             </button>
                         </td>
                     </tr>
