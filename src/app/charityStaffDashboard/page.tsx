@@ -4,12 +4,14 @@ import CharityNav from '../components/charityNavigation';
 import Image from 'next/image';
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Label } from 'recharts'; //for charts
+//for charts
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Label, BarChart, Bar, Legend } from 'recharts'; 
 
 
 export default function CharityDashboard() {
     const [donation, setDonation] = useState<any>(null);
     const [weeklyDistributions, setWeeklyDistributions] = useState([]);
+    const [stockByCategory, setStockByCategory] = useState([]);
     const router = useRouter();
 
     //for distribution
@@ -23,7 +25,9 @@ export default function CharityDashboard() {
             const distData = await distRes.json();
             setWeeklyDistributions(distData);
 
-            
+            const stockRes = await fetch("/api/stockByCategory");
+            const stockData = await stockRes.json();
+            setStockByCategory(stockData);
         }
         loadDonation();
     }, []);
@@ -91,10 +95,10 @@ export default function CharityDashboard() {
                 </div>
 
 
-                <div className="bg-white p-3 my-[3px] w-[390px] h-[360px] rounded-md border border-gray-200">
+                <div className="bg-white p-3 my-[3px] w-[390px] h-[380px] rounded-md border border-gray-200">
                     <ResponsiveContainer width="100%" height={350}>
                         <LineChart data={weeklyDistributions}
-                        margin={{ top: 20, right: 10, left: 10, bottom: 40 }}>
+                        margin={{ top: 20, right: 10, left: 10, bottom: 20 }}>
                             <CartesianGrid strokeDasharray="3 3"/>
                             <XAxis dataKey="week">
                                 <Label value="Week Range" position="bottom"/>
@@ -104,8 +108,8 @@ export default function CharityDashboard() {
                                 <Label value="Donations Per Week" angle={-90} position="insideLeft" dy={60}/>
                             </YAxis>
 
-                            <Tooltip/>
-                            <Line type="monotone" dataKey="count" stroke="#a77f57ff" strokeWidth={3}/>
+                            <Tooltip />
+                            <Line type="monotone" dataKey="count" stroke="#ca7c28ff" strokeWidth={3}/>
                         </LineChart>    
                     </ResponsiveContainer>
                 </div>
@@ -118,24 +122,19 @@ export default function CharityDashboard() {
                 <div className='inline-block rounded-md bg-[#62804b] text-[#fff] text-2xl px-3 mb-6'>
                     Current Stock Levels by Category
                 </div>
-                <div
-                    className="aspect-1/1 bg-gray-300 rounded-full flex justify-center items-center w-70"
-                    style={{
-                        backgroundImage:
-                        "conic-gradient(#729458 0, #729458 120deg, #44403b 120deg, #44403b 0)"
-                    }}
-                >
-                    <div
-                        className="aspect-1/1 rounded-full bg-secondary flex justify-center items-center text-4xl font-bold"
-                        style={{ width: "calc(100% - 3rem)" }}
-                    >
-                    £200
-                    </div>
+
+                <div className="bg-white p-3 my-[3px] w-[480px] h-[380px] rounded-md border border-gray-200">
+                    <ResponsiveContainer width="100%" height={350}>
+                        <BarChart data={stockByCategory} layout="vertical" margin={{ left: 35 }}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis type="number" allowDecimals={false} />
+                            <YAxis type="category" dataKey="category" />
+                            <Tooltip />
+                            <Legend />
+                            <Bar dataKey="count" fill="#ca7c28ff" />
+                        </BarChart>
+                    </ResponsiveContainer>
                 </div>
-                <p className="text-center text-xl">
-                    <br></br>
-                    clothes donated this week
-                </p>
             </div>
 
 
