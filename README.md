@@ -1,36 +1,60 @@
+# SustainWear
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## Local Hosting Instructions
 
-To learn more about Next.js, take a look at the following resources:
+1. Download this repository. E. g. via:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+  ```bash
+  git clone https://github.com/Kaytster/SoftwareEngineering-Project.git
+  ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. Navigate to the project's root directory:
 
-## Deploy on Vercel
+  ```bash
+  cd ./SoftwareEngineering-Project
+  ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. Install the required NPM dependencies:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+  ```bash
+  npm install
+  ```
+
+  Make sure you have NodeJS and NPM (or similar Node package manager of your choice) installed on your system. For a quick check, run:
+
+  ```bash
+  node --version
+  ```
+
+  and
+
+  ```bash
+  npm --version
+  ```
+
+4. Rename `.env-template` file in the project root to simply `.env` and make sure to replace placeholder values there with real environment variables. These variables are necessary for the software to work. Do not share your `.env` file with the public unless you know what you are doing.
+
+5. To run the project in development mode with [Fast Refresh](https://nextjs.org/docs/architecture/fast-refresh):
+
+  ```bash
+  npm run dev
+  ```
+
+6. To run the project in an optimised production mode, build first:
+
+  ```bash
+  npm run build
+  ```
+
+  then start the project:
+
+  ```bash
+  npm start
+  ```
+
+7. In either case, the live version of the software should be available in your browser at <http://localhost:3000/>
+
