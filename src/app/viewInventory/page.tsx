@@ -6,9 +6,20 @@ import "../globals.css";
 import "../pendingDonation/donation.css";
 
 
+interface DonationInventory {
+    DonationID: string;
+    ServerName: string;
+    Description: string;
+    ClothingSize: string;
+    Brand: string;
+    Colour: string;
+    DonorName: string;
+    DateTime: string;
+    Status: string;
+}
 
 export default function DisplayInventory() {
-    const [donations, setDonations] = useState([]);
+    const [donations, setDonations] = useState<DonationInventory[]>([]);
 
     // Load donations on page load
     useEffect(() => {
@@ -51,7 +62,7 @@ export default function DisplayInventory() {
                 </thead>
 
                 <tbody>
-                    {donations.map((d: any) => (
+                    {donations.map((d) => (
                     <tr key={d.DonationID} className="text-center">
                         <td className="p-3 border donorid-col">{d.DonationID}</td>
                         <td className="px-8 py-10 border">

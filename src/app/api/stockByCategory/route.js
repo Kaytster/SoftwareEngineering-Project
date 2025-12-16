@@ -15,7 +15,7 @@ export async function GET() {
             ORDER BY count DESC
         `);
         
-        console.log(data)
+        //test console.log(data)
         return NextResponse.json(data);
     } 
 

@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Label, BarChart, Bar, Legend } from 'recharts'; 
 
 
+
 export default function CharityDashboard() {
     const [donation, setDonation] = useState<any>(null);
     const [weeklyDistributions, setWeeklyDistributions] = useState([]);
@@ -64,8 +65,8 @@ export default function CharityDashboard() {
                     <div className="w-90 m-2 rounded-md  flex justify-center items-center bg-[#f2f0f0]">
                         <Image
                             src={`/uploads/${donation.ServerName}`}
-                            width={20}
-                            height={20}
+                            width={140}
+                            height={150}
                             alt="Clothing Item Image"
                             className="mr-1 inline-block w-40 h-40 mb-2 rounded-md center"
                         />
