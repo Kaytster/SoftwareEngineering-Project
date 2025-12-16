@@ -66,7 +66,7 @@ export default function CharityDashboard() {
                         <Image
                             src={`/uploads/${donation.ServerName}`}
                             width={140}
-                            height={150}
+                                height={150}
                             alt="Clothing Item Image"
                             className="mr-1 inline-block w-40 h-40 mb-2 rounded-md center"
                         />
