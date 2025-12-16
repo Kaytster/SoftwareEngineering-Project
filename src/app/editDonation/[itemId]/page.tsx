@@ -1,8 +1,28 @@
 import '../globals.css'
 import Image from 'next/image';
-
 import DonorNav from "@/app/components/donorNavigation";
+
+import React, {useState, useEffect, ChangeEvent, FormEvent} from 'react';
+import { useRouter, useParams } from 'next/navigation';
+
+interface DonationItem {
+    ItemID: string;
+    Category: string;
+    Description: string | null;
+    Colour: string | null;
+    Brand: string | null;
+    ClothingSize: string | null;
+    ImageID: string;
+    currentImageServerName: string;
+}
+
 export default function EditDonation() {
+
+ const router = useRouter();
+ const params = useParams();
+ const itemId = Array.isArray(params.itemId) ? params.itemId[0] : params.itemId;
+    
+
   return (
     <main>
         <header>
