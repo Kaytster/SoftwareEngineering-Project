@@ -4,13 +4,19 @@
 // <a href="https://www.flaticon.com/authors/orvipixel" title="orvipixel"> orvipixel </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com'</a></div>
 "use client"
 import Image from "next/image"
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { deleteSession } from "../../../lib/session";
+
 import homeIcon from './icons/home.png';
 import donateIcon from './icons/donate.png';
 import inventoryIcon from './icons/inventory.png'
 import statIcon from './icons/graph.png';
 import accountIcon from './icons/avatar.png';
+import logoutIcon from "./icons/logout.png";
+
 export default function CharityNav() {
+  const router = useRouter();
+
   const currentPath = usePathname();
   const links = [
     {href: '/dashboard/charity', label: 'Home', icon: homeIcon, path: '/dashboard/charity'},
@@ -28,8 +34,16 @@ export default function CharityNav() {
     }
     return linkItems;
   };
+
+  function handleLogOut(e: React.MouseEvent<HTMLButtonElement>): void {
+    deleteSession().then(() => {
+        router.push("/login");
+      }
+    );
+  }
+
   return (
-        <ul className="flex justify-around bg-[#9CB7C8]">
+        <ul className="flex justify-around bg-[#9CB7C8] py-2">
               {links.map((link) => (
                 <li key={link.path} className="mr-3">
                   <a className={getLinks(link.path)} href={link.href}>
@@ -44,6 +58,16 @@ export default function CharityNav() {
                   </a>
                 </li>
               ))}
+              <button onClick={handleLogOut} className="cursor-pointer hover:bg-[#3E592A] rounded-full py-2 px-4 text-[#0C0C0C]">
+                <Image
+                  src={logoutIcon}
+                  alt="Logout icon"
+                  width={20}
+                  height={20}
+                  className="mr-1 inline-block"
+                />
+                Log out
+              </button>
             </ul>
   )
 }

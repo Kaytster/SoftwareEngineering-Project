@@ -1,9 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState,  } from "react";
+import { useRouter } from 'next/navigation'
 import Image from "next/image";
 import AdminNav from "../components/charityNavigation";
 import "../globals.css";
-import "../pendingDonation/donation.css";
+import "../pending-donation/donation.css";
 
 
 interface DonationInventory {
@@ -19,7 +20,12 @@ interface DonationInventory {
 }
 
 export default function DisplayInventory() {
-    const [donations, setDonations] = useState<DonationInventory[]>([]);
+    const router = useRouter();
+//   const editButton = () => {
+//       router.push(`/editInventory/${itemId}`)
+//   }
+
+    const [donations, setDonations] = useState([]);
 
     // Load donations on page load
     useEffect(() => {
@@ -62,12 +68,12 @@ export default function DisplayInventory() {
                 </thead>
 
                 <tbody>
-                    {donations.map((d) => (
+                    {donations.map((d: any) => (
                     <tr key={d.DonationID} className="text-center">
                         <td className="p-3 border donorid-col">{d.DonationID}</td>
                         <td className="px-8 py-10 border">
                             <Image
-                                src={`/uploads/${d.ServerName}`}
+                                src={`/images/${d.ServerName}`}
                                 width={140}
                                 height={150}
                                 alt="Donation Image"
@@ -82,7 +88,11 @@ export default function DisplayInventory() {
                         <td className="p-3 border">{d.DateTime}</td>
                         <td className="p-3 border">{d.Status}</td>
                         <td className="p-3 border">
-                            <button className="bg-[#729458] text-[18px] text-white px-4 py-2 rounded-full hover:bg-[#B6D99B] cursor-pointer">
+                            <button className="bg-[#729458] text-[18px] text-white px-4 py-2 rounded-full hover:bg-[#B6D99B] cursor-pointer"
+                                    onClick={() => {
+                                   
+                                    router.push(`/editInventory/${d.ItemID}`); 
+                                }}>
                                 Edit
                             </button>
                         </td>
@@ -95,3 +105,4 @@ export default function DisplayInventory() {
 
     );
 }
+//<a href="https://www.freepik.com/free-photo/men-rsquo-s-black-short-sleeve-shirt-casual-apparel_15850029.htm#fromView=search&page=1&position=13&uuid=8653d58e-f660-4a5d-ac7d-66f276311d67&query=shirt">Image by rawpixel.com on Freepik</a>

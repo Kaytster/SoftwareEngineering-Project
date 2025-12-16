@@ -1,6 +1,9 @@
 import '../globals.css'
 import Image from 'next/image';
 import CharityNav from '../components/charityNavigation';
+
+
+
 export default function EditInventory() {
   return (
     <main>

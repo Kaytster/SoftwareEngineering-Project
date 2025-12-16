@@ -1,7 +1,7 @@
 import '../globals.css'
 import Image from 'next/image';
-
 import DonorNav from "../components/donorNavigation";
+
 export default function EditDonation() {
   return (
     <main>
@@ -14,13 +14,18 @@ export default function EditDonation() {
             <div className="flex space-x-6 h-full">
                 <div className="w-1/2 flex  flex-col justify-center items-center">
                     {/* Profile Picture */}
+
+                    {/* <Image 
+                    src={sampleImage} 
+
                     <Image 
                     src='/images/sampleIMG.jpg' 
+
                     alt="Account" 
                     width={20} 
                     height={20} 
                     className="mr-1 inline-block w-70  h-130 rounded-md " 
-                />
+                /> */}
 
                     <button className=" mt-4 bg-[#729458] hover:bg-[#B6D99B] text-[#0C0C0C] font-bold py-2 px-4 rounded-full">
                         Add/Edit Image

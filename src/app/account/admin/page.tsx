@@ -29,13 +29,13 @@ export default function AdminAccount() {
                     <div className='inline-block p-12 rounded-md bg-[#9CB7C8] text-[#0C0C0C] text-2xl min-w-150 min-h-100'>
                         <p>[username]</p>
                         <br />
-                        <p>type: Donor</p>
+                        <p>type: Staff</p>
                         <br />
                         <p>Name: [First Last]</p>
                         <br />
                         <p>Email: [email address]</p>
                         <br />
-                        <p>Pick up point: [address]</p>
+                        <p>Number: [number]</p>
                     </div>
                     <button className=" mt-4 bg-[#729458] hover:bg-[#B6D99B] text-[#0C0C0C] font-bold py-2 px-4 rounded-full">
                         Edit
