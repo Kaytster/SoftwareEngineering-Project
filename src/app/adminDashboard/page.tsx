@@ -101,7 +101,7 @@ export default function AdminDashboard() {
 
                 {/* recent statistics box */}
                 <div className="relative w-100 h-120 mx-auto mb-1 bg-[#9CB7C8] rounded-md flex flex-col items-center justify-center"> 
-                    <div className='inline-block rounded-md bg-[#729458] text-[#0C0C0C] text-2xl px-3 mb-6'>
+                    <div className='inline-block rounded-md bg-[#729458] text-[#fff] text-2xl px-3 mb-6'>
                         Recent Statistics
                     </div>
                     <div
