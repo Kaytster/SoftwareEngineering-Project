@@ -17,7 +17,7 @@ export default function AdminNav() {
     {href: '/dashboard/admin', label: 'Home', icon: homeIcon, path: '/dashboard/admin'},
     {href: '/reports', label: 'Reports', icon: donateIcon, path: '/reports'},
     {href: '/systemSettings', label: 'System Settings', icon: inventoryIcon, path: '/systemSettings'},
-    {href: '/userAccounts', label: 'User Accounts', icon: statIcon, path: '/userAccounts'},
+    {href: '/user-accounts', label: 'User Accounts', icon: statIcon, path: '/userAccounts'},
     {href: '/account/admin', label: 'My Account', icon: accountIcon, path: '/account/admin'}
   ];
   const navItems = "inline-block rounded-full py-2 px-4 hover:bg-[#3E592A] text-[#0C0C0C] flex items-center";

@@ -13,6 +13,7 @@ export interface IDonation {
   CharityID: string;
   DateTime: string;
   Status: string;
+  ServerName: string;
 }
 
 export async function GET(
@@ -44,14 +45,17 @@ export async function GET(
   // get all user donation from the last month
   let res: IDonation[] | null = null;
 
-  let st: Statement<string, IDonation> =
-    database.prepare(`SELECT DonationID, ItemID, ImageID, DonorID, CharityID, DateTime, Status
-    FROM Donation
-    WHERE DonorID = ?
-    AND DATE(DateTime) <= DATE('now')
-    AND DATE(DateTime) >= DATE('now', '-1 month')
-    ORDER BY DATE(DateTime) DESC
-    ;`);
+  let st: Statement<string, IDonation> = database.prepare(
+    `SELECT
+        DonationID, ItemID, Donation.ImageID, DonorID, CharityID, DateTime, Status, ServerName
+      FROM Donation
+      INNER JOIN Image ON Donation.ImageID = Image.ImageID
+      WHERE DonorID = ?
+      AND DATE(DateTime) <= DATE('now')
+      AND DATE(DateTime) >= DATE('now', '-1 month')
+      ORDER BY DATE(DateTime) DESC
+      ;`,
+  );
 
   res = st.all(requestUserId);
 
