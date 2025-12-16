@@ -6,14 +6,26 @@ import AdminNav from "../components/charityNavigation";
 import "../globals.css";
 import "./donation.css";
 
+interface Donation {
+    DonationID: string;
+    ServerName: string;
+    Description: string;
+    ClothingSize: string;
+    Brand: string;
+    Colour: string;
+    DonorName: string;
+    DateTime: string;
+    Status: string;
+}
+
 export default function DisplayDonations() {
-    const [donations, setDonations] = useState([]);
+    const [donations, setDonations] = useState<Donation[]>([]);
     const router = useRouter();
 
     // Load donations on page load
     useEffect(() => {
         async function loadData() {
-        const res = await fetch("/api/pending-donations");
+        const res = await fetch("/api/pendingDonations");
         const data = await res.json();
         setDonations(data);
         }
@@ -22,7 +34,7 @@ export default function DisplayDonations() {
 
     const handleEditStatus = (donationId: string) => {
     // Redirect to the edit status page with the donation ID
-        router.push(`../edit-status?donationId=${donationId}`);
+        router.push(`../editStatus?donationId=${donationId}`);
     };
 
     return (
@@ -56,7 +68,7 @@ export default function DisplayDonations() {
                 </thead>
 
                 <tbody>
-                    {donations.map((d: any) => (
+                    {donations.map((d) => (
                     <tr key={d.DonationID} className="text-center">
                         <td className="p-3 border donorid-col">{d.DonationID}</td>
                         <td className="px-8 py-10 border">

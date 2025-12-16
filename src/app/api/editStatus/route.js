@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import { getDb } from "../../../../lib/db";
 
-export async function GET(req, { params }) {
-    try {
+export async function GET(req, { params }){
+    try{
         const db = await getDb();
         const { donationId } = req.nextUrl.searchParams.get('donationId');
 
@@ -23,7 +23,7 @@ export async function GET(req, { params }) {
         return NextResponse.json(donation);
     } 
     
-    catch (error) {
+    catch (error){
         console.error(error);
         return NextResponse.json(
             { error: "Failed to load donation" },
@@ -32,8 +32,8 @@ export async function GET(req, { params }) {
     }
 }
 
-export async function PUT(req, { params }) {
-    try {
+export async function PUT(req, { params }){
+    try{
         const url = new URL(req.url);
         const donationId = url.searchParams.get("donationId");
         const { Status } = await req.json();
@@ -49,7 +49,7 @@ export async function PUT(req, { params }) {
         return NextResponse.json({ success: true });
     } 
     
-    catch (error) {
+    catch (error){
         console.error(error);
         return NextResponse.json(
             { error: "Failed to update status" },

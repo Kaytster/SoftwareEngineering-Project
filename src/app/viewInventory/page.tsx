@@ -6,6 +6,19 @@ import AdminNav from "../components/charityNavigation";
 import "../globals.css";
 import "../pending-donation/donation.css";
 
+
+interface DonationInventory {
+    DonationID: string;
+    ServerName: string;
+    Description: string;
+    ClothingSize: string;
+    Brand: string;
+    Colour: string;
+    DonorName: string;
+    DateTime: string;
+    Status: string;
+}
+
 export default function DisplayInventory() {
     const router = useRouter();
 //   const editButton = () => {
@@ -17,7 +30,7 @@ export default function DisplayInventory() {
     // Load donations on page load
     useEffect(() => {
         async function loadData() {
-        const res = await fetch("/api/view-inventory");
+        const res = await fetch("/api/viewInventory");
         const data = await res.json();
         setDonations(data);
         }
