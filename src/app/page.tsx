@@ -1,6 +1,7 @@
 import './globals.css'
 import Image from 'next/image';
 import LandingNav from './components/landingNavigation';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -25,9 +26,9 @@ export default function Home() {
                 <p className="text-2xl text-center mb-8">Donating has never been easier.</p>
                 
                 <p className="text-center">
-                    <a href="#" className="underline text-[#729458] hover:text-blue-800">Sign Up </a> 
+                    <Link href="/signup" className="underline text-[#729458] hover:text-blue-800">Sign Up </Link> 
                     or 
-                    <a href="#" className="underline text-[#729458] hover:text-blue-800"> Log In </a> 
+                    <Link href="/login" className="underline text-[#729458] hover:text-blue-800"> Log In </Link> 
                     to get started.
                 </p>
               </div>

@@ -29,7 +29,7 @@ export default async function UserAccounts() {
               <p>No users.</p>
             ) : (
               <div className="w-full overflow-x-auto">
-                <table className="w-full users-table mb-4">
+                <table className="users-table mb-4">
                   <thead>
                     <tr className="border-b">
                       <th>ID</th>
