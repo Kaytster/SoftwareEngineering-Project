@@ -1,0 +1,48 @@
+import '@/app/globals.css'
+import CharityNav from '@/app/components/charityNavigation';
+import Image from 'next/image';
+import avatar from '@/app/components/icons/pfp-icon-temp.png';
+export default function CharityAccount() {
+  return (
+    <main>
+        <header>
+            <CharityNav />
+        </header>
+        <body>
+            <div className="flex p-4 justify-center">
+                <div className="flex flex-col p-10 justify-center">
+                    <div className="flex flex-row justify-left">
+                        <Image 
+                        src={avatar} 
+                        alt="Avatar" 
+                        width={20} 
+                        height={20} 
+                        className="mr-1 inline-block w-100  h-100 rounded-full" 
+                        />
+                    </div>
+                    <button className=" mt-4 bg-[#729458] hover:bg-[#B6D99B] text-[#0C0C0C] font-bold py-2 px-4 rounded-full">
+                        Add/Edit Image
+                    </button>
+                </div>
+                
+                <div className="flex flex-col p-10 justify-center">
+                    <div className='inline-block p-12 rounded-md bg-[#9CB7C8] text-[#0C0C0C] text-2xl min-w-150 min-h-100'>
+                        <p>[username]</p>
+                        <br />
+                        <p>type: Charity staff</p>
+                        <br />
+                        <p>Charity: [charity]</p>
+                        <br />
+                        <p>Name: [First Last]</p>
+                        <br />
+                        <p>Email: [email address]</p>
+                    </div>
+                    <button className=" mt-4 bg-[#729458] hover:bg-[#B6D99B] text-[#0C0C0C] font-bold py-2 px-4 rounded-full">
+                        Edit
+                    </button>
+                </div>
+            </div>
+        </body>
+    </main>
+    )
+}
